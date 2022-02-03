@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.shopping.app.login;
+package com.mycompany.shopping.app.admin.login;
 
 /**
  *
@@ -110,7 +110,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setForeground(new java.awt.Color(255, 153, 0));
+        jPanel3.setBackground(new java.awt.Color(255, 204, 51));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
