@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.shopping.app.admin.user_list;
+package com.mycompany.shopping.app.admin.customer;
+
+import com.mycompany.shopping.app.admin.login.Login;
 
 /**
  *
@@ -123,6 +125,11 @@ public class Customers extends javax.swing.JFrame {
         Back.setText("Back");
         Back.setBorder(null);
         Back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackMouseClicked(evt);
+            }
+        });
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackActionPerformed(evt);
@@ -174,6 +181,11 @@ public class Customers extends javax.swing.JFrame {
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
+
+    private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BackMouseClicked
 
     /**
      * @param args the command line arguments
