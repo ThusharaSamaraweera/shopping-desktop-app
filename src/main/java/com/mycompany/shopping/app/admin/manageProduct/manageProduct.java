@@ -5,7 +5,7 @@
  */
 package com.mycompany.shopping.app.admin.manageProduct;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -196,6 +196,11 @@ public class manageProduct extends javax.swing.JFrame {
         DeleteBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         DeleteBtn.setForeground(new java.awt.Color(102, 102, 102));
         DeleteBtn.setText("Delete");
+        DeleteBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteBtnMouseClicked(evt);
+            }
+        });
         DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteBtnActionPerformed(evt);
@@ -224,6 +229,11 @@ public class manageProduct extends javax.swing.JFrame {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setAutoscrolls(true);
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseClicked(evt);
+            }
+        });
 
         ProductInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -233,6 +243,11 @@ public class manageProduct extends javax.swing.JFrame {
                 "Product ID", "Product Name", "Main Category", "Sub Category", "Description", "Small Size Quantity", "Small Size Price", "Medium Size Quantity", "Medium Size Price", "Large Size Quantity", "Large Size Price"
             }
         ));
+        ProductInfoTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProductInfoTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(ProductInfoTable);
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 51));
@@ -579,9 +594,25 @@ public class manageProduct extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LargePriceActionPerformed
 
+    public manageProduct(){
+        initComponents();
+        SelectProducts();
+    }
+    
     Connection Con = null;
     Statement St = null;
     ResultSet Rs = null;
+    
+    public void SelectProducts(){
+        try{
+            Con = DriverManager.getConnection("jdbc:derby//localhost:3306//textile shop","root","#19KKas99@%");
+            St = Con.createStatement();
+            Rs = St.executeQuery("select 8 from items");
+            ProductInfoTable.setModel(DbUtils.resultSetToTableModel(Rs));
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
     
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         try{
@@ -605,11 +636,53 @@ public class manageProduct extends javax.swing.JFrame {
             int row = add.executeUpdate();
             JOptionPane.showMessageDialog(this,"Product Successfully Added");
             Con.close();
+            SelectProducts();
         }catch(SQLException e){
             e.printStackTrace();
         }
         
     }//GEN-LAST:event_AddBtnMouseClicked
+
+    private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
+        if(ProductID.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter the Product to be Deleted");
+        }else{
+            try{
+                Con = DriverManager.getConnection("jdbc:derby//localhost:3306//textile shop","root","#19KKas99@%");
+                String ID = ProductID.getText();
+                String Query = "delete from root.items where item_id="+ID;
+                Statement Add = Con.createStatement();
+                Add.executeUpdate(Query);
+                SelectProducts();
+                JOptionPane.showMessageDialog(this,"Product Deleted Succsessfully");
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_DeleteBtnMouseClicked
+
+    private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
+        
+    }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void ProductInfoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductInfoTableMouseClicked
+        DefaultTableModel model = (DefaultTableModel)ProductInfoTable.getModel();
+        int Myindex = ProductInfoTable.getSelectedRow();
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        MainCategoryComboBox.setText(model.getValueAt(Myindex, 2).toString());
+        SubCategoryComboBox.setText(model.getValueAt(Myindex, 2).toString());
+        DescriptionTextArea.setText(model.getValueAt(Myindex, 2).toString());
+        SmallQty.setText(model.getValueAt(Myindex, 2).toString());
+        SmallPrice.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+    }//GEN-LAST:event_ProductInfoTableMouseClicked
 
     /**
      * @param args the command line arguments
