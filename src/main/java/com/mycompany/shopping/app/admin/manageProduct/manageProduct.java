@@ -31,41 +31,41 @@ public class manageProduct extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        passwordTextfield1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        ProductNameLabel = new javax.swing.JLabel();
+        ProductNameTextfield = new javax.swing.JTextField();
+        CategoryLabel = new javax.swing.JLabel();
+        SmallSize = new javax.swing.JLabel();
+        DescriptionLabel = new javax.swing.JLabel();
+        AddBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        DescriptionTextArea = new javax.swing.JTextArea();
+        DeleteBtn = new javax.swing.JButton();
+        HomeBtn = new javax.swing.JButton();
+        EditBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        passwordTextfield7 = new javax.swing.JTextField();
-        passwordTextfield11 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        passwordTextfield2 = new javax.swing.JTextField();
-        passwordTextfield3 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        passwordTextfield4 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        passwordTextfield8 = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        passwordTextfield14 = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        passwordTextfield9 = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        passwordTextfield15 = new javax.swing.JTextField();
+        QtyAndPriceLabel = new javax.swing.JLabel();
+        SmallQty = new javax.swing.JTextField();
+        SmallPrice = new javax.swing.JTextField();
+        SRs = new javax.swing.JLabel();
+        MainCategoryComboBox = new javax.swing.JComboBox<>();
+        SubCategoryComboBox = new javax.swing.JComboBox<>();
+        Img1Label = new javax.swing.JLabel();
+        Img1Path = new javax.swing.JTextField();
+        Img2Path = new javax.swing.JTextField();
+        Img2Label = new javax.swing.JLabel();
+        Img3Path = new javax.swing.JTextField();
+        Img3Label = new javax.swing.JLabel();
+        MediumSize = new javax.swing.JLabel();
+        MediumQty = new javax.swing.JTextField();
+        MRs = new javax.swing.JLabel();
+        MediumPrice = new javax.swing.JTextField();
+        LargeSize = new javax.swing.JLabel();
+        LargeQty = new javax.swing.JTextField();
+        LRs = new javax.swing.JLabel();
+        LargePrice = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -125,36 +125,36 @@ public class manageProduct extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel3.setText("Product Name");
-        jLabel3.setMinimumSize(new java.awt.Dimension(49, 27));
+        ProductNameLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        ProductNameLabel.setText("Product Name");
+        ProductNameLabel.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield1.addActionListener(new java.awt.event.ActionListener() {
+        ProductNameTextfield.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        ProductNameTextfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield1ActionPerformed(evt);
+                ProductNameTextfieldActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel4.setText("Category");
-        jLabel4.setMinimumSize(new java.awt.Dimension(49, 27));
+        CategoryLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        CategoryLabel.setText("Category");
+        CategoryLabel.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel5.setText("S");
-        jLabel5.setMinimumSize(new java.awt.Dimension(49, 27));
+        SmallSize.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        SmallSize.setText("S");
+        SmallSize.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel6.setText("Description");
-        jLabel6.setMinimumSize(new java.awt.Dimension(49, 27));
+        DescriptionLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        DescriptionLabel.setText("Description");
+        DescriptionLabel.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        jButton4.setBackground(new java.awt.Color(255, 153, 51));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(102, 102, 102));
-        jButton4.setText("Add");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        AddBtn.setBackground(new java.awt.Color(255, 153, 51));
+        AddBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        AddBtn.setForeground(new java.awt.Color(102, 102, 102));
+        AddBtn.setText("Add");
+        AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                AddBtnActionPerformed(evt);
             }
         });
 
@@ -173,39 +173,39 @@ public class manageProduct extends javax.swing.JFrame {
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-        jTextArea1.setColumns(1);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(jTextArea1);
+        DescriptionTextArea.setColumns(1);
+        DescriptionTextArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        DescriptionTextArea.setRows(5);
+        DescriptionTextArea.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(DescriptionTextArea);
 
-        jButton5.setBackground(new java.awt.Color(255, 153, 51));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(102, 102, 102));
-        jButton5.setText("Delete");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        DeleteBtn.setBackground(new java.awt.Color(255, 153, 51));
+        DeleteBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        DeleteBtn.setForeground(new java.awt.Color(102, 102, 102));
+        DeleteBtn.setText("Delete");
+        DeleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                DeleteBtnActionPerformed(evt);
             }
         });
 
-        jButton7.setBackground(new java.awt.Color(255, 204, 51));
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(102, 102, 102));
-        jButton7.setText("Home");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        HomeBtn.setBackground(new java.awt.Color(255, 204, 51));
+        HomeBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        HomeBtn.setForeground(new java.awt.Color(102, 102, 102));
+        HomeBtn.setText("Home");
+        HomeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                HomeBtnActionPerformed(evt);
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(255, 153, 51));
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(102, 102, 102));
-        jButton8.setText("Edit");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        EditBtn.setBackground(new java.awt.Color(255, 153, 51));
+        EditBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EditBtn.setForeground(new java.awt.Color(102, 102, 102));
+        EditBtn.setText("Edit");
+        EditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                EditBtnActionPerformed(evt);
             }
         });
 
@@ -235,113 +235,113 @@ public class manageProduct extends javax.swing.JFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel8.setText("Quantity and Price");
-        jLabel8.setMinimumSize(new java.awt.Dimension(49, 27));
+        QtyAndPriceLabel.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        QtyAndPriceLabel.setText("Quantity and Price");
+        QtyAndPriceLabel.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield7.addActionListener(new java.awt.event.ActionListener() {
+        SmallQty.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        SmallQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield7ActionPerformed(evt);
+                SmallQtyActionPerformed(evt);
             }
         });
 
-        passwordTextfield11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield11.addActionListener(new java.awt.event.ActionListener() {
+        SmallPrice.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        SmallPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield11ActionPerformed(evt);
+                SmallPriceActionPerformed(evt);
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel16.setText("Rs.");
-        jLabel16.setMinimumSize(new java.awt.Dimension(49, 27));
+        SRs.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        SRs.setText("Rs.");
+        SRs.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Men", "Women" }));
+        MainCategoryComboBox.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        MainCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Men", "Women" }));
 
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        SubCategoryComboBox.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        SubCategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SubCategoryComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                SubCategoryComboBoxActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel7.setText("Image 1");
-        jLabel7.setMinimumSize(new java.awt.Dimension(49, 27));
+        Img1Label.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        Img1Label.setText("Image 1");
+        Img1Label.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield2.addActionListener(new java.awt.event.ActionListener() {
+        Img1Path.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        Img1Path.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield2ActionPerformed(evt);
+                Img1PathActionPerformed(evt);
             }
         });
 
-        passwordTextfield3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield3.addActionListener(new java.awt.event.ActionListener() {
+        Img2Path.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        Img2Path.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield3ActionPerformed(evt);
+                Img2PathActionPerformed(evt);
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel12.setText("Image 2");
-        jLabel12.setMinimumSize(new java.awt.Dimension(49, 27));
+        Img2Label.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        Img2Label.setText("Image 2");
+        Img2Label.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield4.addActionListener(new java.awt.event.ActionListener() {
+        Img3Path.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        Img3Path.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield4ActionPerformed(evt);
+                Img3PathActionPerformed(evt);
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel13.setText("Image 3");
-        jLabel13.setMinimumSize(new java.awt.Dimension(49, 27));
+        Img3Label.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        Img3Label.setText("Image 3");
+        Img3Label.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel21.setText("M");
-        jLabel21.setMinimumSize(new java.awt.Dimension(49, 27));
+        MediumSize.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        MediumSize.setText("M");
+        MediumSize.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield8.addActionListener(new java.awt.event.ActionListener() {
+        MediumQty.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        MediumQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield8ActionPerformed(evt);
+                MediumQtyActionPerformed(evt);
             }
         });
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel22.setText("Rs.");
-        jLabel22.setMinimumSize(new java.awt.Dimension(49, 27));
+        MRs.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        MRs.setText("Rs.");
+        MRs.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield14.addActionListener(new java.awt.event.ActionListener() {
+        MediumPrice.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        MediumPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield14ActionPerformed(evt);
+                MediumPriceActionPerformed(evt);
             }
         });
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel23.setText("L");
-        jLabel23.setMinimumSize(new java.awt.Dimension(49, 27));
+        LargeSize.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        LargeSize.setText("L");
+        LargeSize.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield9.addActionListener(new java.awt.event.ActionListener() {
+        LargeQty.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LargeQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield9ActionPerformed(evt);
+                LargeQtyActionPerformed(evt);
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        jLabel24.setText("Rs.");
-        jLabel24.setMinimumSize(new java.awt.Dimension(49, 27));
+        LRs.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        LRs.setText("Rs.");
+        LRs.setMinimumSize(new java.awt.Dimension(49, 27));
 
-        passwordTextfield15.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        passwordTextfield15.addActionListener(new java.awt.event.ActionListener() {
+        LargePrice.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        LargePrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTextfield15ActionPerformed(evt);
+                LargePriceActionPerformed(evt);
             }
         });
 
@@ -357,54 +357,54 @@ public class manageProduct extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Img1Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Img2Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Img3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(passwordTextfield4)
-                                .addComponent(passwordTextfield3)
-                                .addComponent(passwordTextfield2)))
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Img3Path)
+                                .addComponent(Img2Path)
+                                .addComponent(Img1Path)))
+                        .addComponent(QtyAndPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CategoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProductNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(passwordTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProductNameTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(10, 10, 10)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MainCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(SubCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MediumSize, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MediumQty, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(MRs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(MediumPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SmallSize, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SmallQty, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SRs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordTextfield11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SmallPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LargeSize, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordTextfield9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LargeQty, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LRs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(passwordTextfield15, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(LargePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -412,16 +412,16 @@ public class manageProduct extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(221, 221, 221)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
@@ -433,50 +433,50 @@ public class manageProduct extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ProductNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProductNameTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CategoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(MainCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SubCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(QtyAndPriceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(SmallSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SmallQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SmallPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SRs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(MediumSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MediumQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MediumPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MRs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LargeSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LargeQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LargePrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LRs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Img1Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Img1Path, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordTextfield3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Img2Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Img2Path, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passwordTextfield4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Img3Path, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Img3Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,11 +486,11 @@ public class manageProduct extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -506,65 +506,65 @@ public class manageProduct extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void passwordTextfield1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield1ActionPerformed
+    private void ProductNameTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductNameTextfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield1ActionPerformed
+    }//GEN-LAST:event_ProductNameTextfieldActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_AddBtnActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void DeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_DeleteBtnActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void HomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_HomeBtnActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_EditBtnActionPerformed
 
-    private void passwordTextfield7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield7ActionPerformed
+    private void SmallQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SmallQtyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield7ActionPerformed
+    }//GEN-LAST:event_SmallQtyActionPerformed
 
-    private void passwordTextfield11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield11ActionPerformed
+    private void SmallPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SmallPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield11ActionPerformed
+    }//GEN-LAST:event_SmallPriceActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void SubCategoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubCategoryComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_SubCategoryComboBoxActionPerformed
 
-    private void passwordTextfield2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield2ActionPerformed
+    private void Img1PathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Img1PathActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield2ActionPerformed
+    }//GEN-LAST:event_Img1PathActionPerformed
 
-    private void passwordTextfield3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield3ActionPerformed
+    private void Img2PathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Img2PathActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield3ActionPerformed
+    }//GEN-LAST:event_Img2PathActionPerformed
 
-    private void passwordTextfield4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield4ActionPerformed
+    private void Img3PathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Img3PathActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield4ActionPerformed
+    }//GEN-LAST:event_Img3PathActionPerformed
 
-    private void passwordTextfield8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield8ActionPerformed
+    private void MediumQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MediumQtyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield8ActionPerformed
+    }//GEN-LAST:event_MediumQtyActionPerformed
 
-    private void passwordTextfield14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield14ActionPerformed
+    private void MediumPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MediumPriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield14ActionPerformed
+    }//GEN-LAST:event_MediumPriceActionPerformed
 
-    private void passwordTextfield9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield9ActionPerformed
+    private void LargeQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LargeQtyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield9ActionPerformed
+    }//GEN-LAST:event_LargeQtyActionPerformed
 
-    private void passwordTextfield15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextfield15ActionPerformed
+    private void LargePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LargePriceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTextfield15ActionPerformed
+    }//GEN-LAST:event_LargePriceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -602,44 +602,44 @@ public class manageProduct extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton AddBtn;
+    private javax.swing.JLabel CategoryLabel;
+    private javax.swing.JButton DeleteBtn;
+    private javax.swing.JLabel DescriptionLabel;
+    private javax.swing.JTextArea DescriptionTextArea;
+    private javax.swing.JButton EditBtn;
+    private javax.swing.JButton HomeBtn;
+    private javax.swing.JLabel Img1Label;
+    private javax.swing.JTextField Img1Path;
+    private javax.swing.JLabel Img2Label;
+    private javax.swing.JTextField Img2Path;
+    private javax.swing.JLabel Img3Label;
+    private javax.swing.JTextField Img3Path;
+    private javax.swing.JLabel LRs;
+    private javax.swing.JTextField LargePrice;
+    private javax.swing.JTextField LargeQty;
+    private javax.swing.JLabel LargeSize;
+    private javax.swing.JLabel MRs;
+    private javax.swing.JComboBox<String> MainCategoryComboBox;
+    private javax.swing.JTextField MediumPrice;
+    private javax.swing.JTextField MediumQty;
+    private javax.swing.JLabel MediumSize;
+    private javax.swing.JLabel ProductNameLabel;
+    private javax.swing.JTextField ProductNameTextfield;
+    private javax.swing.JLabel QtyAndPriceLabel;
+    private javax.swing.JLabel SRs;
+    private javax.swing.JTextField SmallPrice;
+    private javax.swing.JTextField SmallQty;
+    private javax.swing.JLabel SmallSize;
+    private javax.swing.JComboBox<String> SubCategoryComboBox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField passwordTextfield1;
-    private javax.swing.JTextField passwordTextfield11;
-    private javax.swing.JTextField passwordTextfield14;
-    private javax.swing.JTextField passwordTextfield15;
-    private javax.swing.JTextField passwordTextfield2;
-    private javax.swing.JTextField passwordTextfield3;
-    private javax.swing.JTextField passwordTextfield4;
-    private javax.swing.JTextField passwordTextfield7;
-    private javax.swing.JTextField passwordTextfield8;
-    private javax.swing.JTextField passwordTextfield9;
     // End of variables declaration//GEN-END:variables
 }
