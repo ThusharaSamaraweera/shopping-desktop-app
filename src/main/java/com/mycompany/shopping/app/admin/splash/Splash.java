@@ -43,7 +43,7 @@ public class Splash extends javax.swing.JFrame {
         ProgressBar.setBorderPainted(false);
 
         Title.setFont(new java.awt.Font("Bodoni MT Black", 3, 24)); // NOI18N
-        Title.setText("King's Men Textitle Shop");
+        Title.setText("Kingmen Textitle Shop");
 
         progress.setFont(new java.awt.Font("Tekton Pro", 1, 18)); // NOI18N
         progress.setText("%");
@@ -61,7 +61,7 @@ public class Splash extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(259, 259, 259)
                         .addComponent(progress)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

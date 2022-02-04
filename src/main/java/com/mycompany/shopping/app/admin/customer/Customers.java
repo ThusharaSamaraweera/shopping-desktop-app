@@ -5,6 +5,7 @@
 package com.mycompany.shopping.app.admin.customer;
 
 import com.mycompany.shopping.app.admin.login.Login;
+import java.sql.*;
 
 /**
  *
@@ -17,8 +18,12 @@ public class Customers extends javax.swing.JFrame {
      */
     public Customers() {
         initComponents();
+        loadData();
     }
-
+    
+    Connection con = null;
+    Statement st = null;
+    ResultSet re = null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,6 +192,17 @@ public class Customers extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
 
+    public void loadData(){
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop", "root", "thu$hara#16");
+            st = con.createStatement();
+            String qu = "SELECT * FROM signup";
+            re = st.executeQuery(qu);
+            System.out.println(re);
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
     /**
      * @param args the command line arguments
      */

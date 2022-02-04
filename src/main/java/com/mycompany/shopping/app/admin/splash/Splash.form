@@ -56,7 +56,7 @@
                           <Component id="progress" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="132" max="32767" attributes="0"/>
+                  <EmptySpace pref="161" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -90,7 +90,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Bodoni MT Black" size="24" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="King&apos;s Men Textitle Shop"/>
+            <Property name="text" type="java.lang.String" value="Kingmen Textitle Shop"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="progress">
