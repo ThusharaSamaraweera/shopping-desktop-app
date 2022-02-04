@@ -5,6 +5,14 @@
  */
 package com.mycompany.shopping.app.admin.manageProduct;
 
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gayan Malinda
@@ -44,7 +52,7 @@ public class manageProduct extends javax.swing.JFrame {
         HomeBtn = new javax.swing.JButton();
         EditBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        ProductInfoTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         QtyAndPriceLabel = new javax.swing.JLabel();
         SmallQty = new javax.swing.JTextField();
@@ -152,6 +160,11 @@ public class manageProduct extends javax.swing.JFrame {
         AddBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         AddBtn.setForeground(new java.awt.Color(102, 102, 102));
         AddBtn.setText("Add");
+        AddBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddBtnMouseClicked(evt);
+            }
+        });
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddBtnActionPerformed(evt);
@@ -212,7 +225,7 @@ public class manageProduct extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setAutoscrolls(true);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ProductInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -220,7 +233,7 @@ public class manageProduct extends javax.swing.JFrame {
                 "Product ID", "Product Name", "Main Category", "Sub Category", "Description", "Small Size Quantity", "Small Size Price", "Medium Size Quantity", "Medium Size Price", "Large Size Quantity", "Large Size Price"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(ProductInfoTable);
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 51));
 
@@ -566,6 +579,38 @@ public class manageProduct extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_LargePriceActionPerformed
 
+    Connection Con = null;
+    Statement St = null;
+    ResultSet Rs = null;
+    
+    private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
+        try{
+            Con = DriverManager.getConnection("jdbc:derby//localhost:3306//textile shop","root","#19KKas99@%");
+            PreparedStatement add = Con.prepareStatement("insert into items values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            
+            add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
+            add.setString(2,SubCategoryComboBox.getSelectedItem().toString());
+            add.setString(3, ProductNameTextfield.getText());
+            add.setInt(4, Integer.valueOf(SmallQty.getText()));
+            add.setInt(5, Integer.valueOf(MediumQty.getText()));
+            add.setInt(6, Integer.valueOf(LargeQty.getText()));
+            add.setDouble(7, Double.valueOf(SmallPrice.getText()));
+            add.setDouble(8, Double.valueOf(MediumPrice.getText()));
+            add.setDouble(9, Double.valueOf(LargePrice.getText()));
+            add.setString(10, Img1Path.getText());
+            add.setString(11, Img2Path.getText());
+            add.setString(12, Img3Path.getText());
+            add.setString(13, DescriptionTextArea.getText());
+            
+            int row = add.executeUpdate();
+            JOptionPane.showMessageDialog(this,"Product Successfully Added");
+            Con.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_AddBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -624,6 +669,7 @@ public class manageProduct extends javax.swing.JFrame {
     private javax.swing.JTextField MediumPrice;
     private javax.swing.JTextField MediumQty;
     private javax.swing.JLabel MediumSize;
+    private javax.swing.JTable ProductInfoTable;
     private javax.swing.JLabel ProductNameLabel;
     private javax.swing.JTextField ProductNameTextfield;
     private javax.swing.JLabel QtyAndPriceLabel;
@@ -638,7 +684,6 @@ public class manageProduct extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
