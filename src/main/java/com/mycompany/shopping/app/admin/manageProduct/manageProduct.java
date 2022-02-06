@@ -602,6 +602,7 @@ public class manageProduct extends javax.swing.JFrame {
     Connection Con = null;
     Statement St = null;
     ResultSet Rs = null;
+    PreparedStatement add = null;
     
     public void SelectProducts(){
         try{
@@ -614,10 +615,11 @@ public class manageProduct extends javax.swing.JFrame {
         }
     }
     
+    int row;
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         try{
-            Con = DriverManager.getConnection("jdbc:derby//localhost:3306//textile shop","root","#19KKas99@%");
-            PreparedStatement add = Con.prepareStatement("insert into items values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            Con = DriverManager.getConnection("jdbc:mysql//localhost:3306//textile shop","root","#19KKas99@%");
+            add = Con.prepareStatement("insert into items(main_cat, cat_name, name, qty_s, qty_m, qty_l, price_s, price_m, price_l, img1, img2, img3, desc) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             
             add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
             add.setString(2,SubCategoryComboBox.getSelectedItem().toString());
@@ -633,7 +635,7 @@ public class manageProduct extends javax.swing.JFrame {
             add.setString(12, Img3Path.getText());
             add.setString(13, DescriptionTextArea.getText());
             
-            int row = add.executeUpdate();
+            row = add.executeUpdate();
             JOptionPane.showMessageDialog(this,"Product Successfully Added");
             Con.close();
             SelectProducts();
@@ -674,14 +676,13 @@ public class manageProduct extends javax.swing.JFrame {
         DescriptionTextArea.setText(model.getValueAt(Myindex, 2).toString());
         SmallQty.setText(model.getValueAt(Myindex, 2).toString());
         SmallPrice.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        MediumQty.setText(model.getValueAt(Myindex, 2).toString());
+        MediumPrice.setText(model.getValueAt(Myindex, 2).toString());
+        LargeQty.setText(model.getValueAt(Myindex, 2).toString());
+        LargePrice.setText(model.getValueAt(Myindex, 2).toString());
+        Img1Path.setText(model.getValueAt(Myindex, 2).toString());
+        Img2Path.setText(model.getValueAt(Myindex, 2).toString());
+        Img3Path.setText(model.getValueAt(Myindex, 2).toString());
     }//GEN-LAST:event_ProductInfoTableMouseClicked
 
     /**
