@@ -194,13 +194,14 @@ public class Customers extends javax.swing.JFrame {
 
     public void loadData(){
         try{
-            System.out.println("hi");
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?useSSL=false", "root", "thu$hara#16");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             st = con.createStatement();
             String qu = "SELECT * FROM signup";
             re = st.executeQuery(qu);
-            System.out.println(re);
+            while (re.next()) {
+                  
+            }
         }catch(SQLException e){
             System.out.println(e);
         }
