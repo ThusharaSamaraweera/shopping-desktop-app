@@ -194,7 +194,9 @@ public class Customers extends javax.swing.JFrame {
 
     public void loadData(){
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop", "root", "thu$hara#16");
+            System.out.println("hi");
+
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?useSSL=false", "root", "thu$hara#16");
             st = con.createStatement();
             String qu = "SELECT * FROM signup";
             re = st.executeQuery(qu);
