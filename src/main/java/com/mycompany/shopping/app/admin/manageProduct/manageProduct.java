@@ -10,8 +10,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -434,10 +437,6 @@ public class manageProduct extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LargePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(221, 221, 221)
                         .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,7 +450,11 @@ public class manageProduct extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,15 +514,13 @@ public class manageProduct extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(460, 460, 460)
                         .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -600,10 +601,38 @@ public class manageProduct extends javax.swing.JFrame {
     PreparedStatement add = null;
     
     public void SelectProducts(){
+        int c;
         try{
-            Con = DriverManager.getConnection("jdbc:mysql//localhost:3306//textile_shop","root","#19KKas99@%");            St = Con.createStatement();
-            Rs = St.executeQuery("select * from items");
-            ProductInfoTable.setModel(DbUtils.resultSetToTableModel(Rs));
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = Con.prepareStatement("select * from items");
+            Rs = add.executeQuery();
+            
+            ResultSetMetaData Rsd = Rs.getMetaData();
+            c = Rsd.getColumnCount();
+            
+            DefaultTableModel d = (DefaultTableModel)ProductInfoTable.getModel();
+            d.setRowCount(0);
+            
+            while(Rs.next()){
+                Vector v = new Vector();
+                
+                for(int i=1; i<=c; i++){
+                    v.add(Rs.getInt("item_id"));
+                    v.add(Rs.getString("name"));
+                    v.add(Rs.getString("main_cat"));
+                    v.add(Rs.getString("cat_name"));
+                    v.add(Rs.getString("desc"));
+                    v.add(Rs.getInt("qty_s"));
+                    v.add(Rs.getInt("price_s"));
+                    v.add(Rs.getInt("qty_m"));
+                    v.add(Rs.getInt("price_m"));
+                    v.add(Rs.getInt("qty_l"));
+                    v.add(Rs.getInt("price_l"));
+                }
+                d.addRow(v);
+            }
+            
+            Con.close();
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -664,13 +693,13 @@ public class manageProduct extends javax.swing.JFrame {
     private void ProductInfoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductInfoTableMouseClicked
         DefaultTableModel model = (DefaultTableModel)ProductInfoTable.getModel();
         int Myindex = ProductInfoTable.getSelectedRow();
-        ProductNameTextfield.setText(model.getValueAt(Myindex, 2).toString());
+        ProductNameTextfield.setText(model.getValueAt(Myindex, 1).toString());
         MainCategoryComboBox.setText(model.getValueAt(Myindex, 2).toString());
-        SubCategoryComboBox.setText(model.getValueAt(Myindex, 2).toString());
-        DescriptionTextArea.setText(model.getValueAt(Myindex, 2).toString());
-        SmallQty.setText(model.getValueAt(Myindex, 2).toString());
-        SmallPrice.setText(model.getValueAt(Myindex, 2).toString());
-        MediumQty.setText(model.getValueAt(Myindex, 2).toString());
+        SubCategoryComboBox.setText(model.getValueAt(Myindex, 3).toString());
+        DescriptionTextArea.setText(model.getValueAt(Myindex, 4).toString());
+        SmallQty.setText(model.getValueAt(Myindex, 5).toString());
+        SmallPrice.setText(model.getValueAt(Myindex, 6).toString());
+        MediumQty.setText(model.getValueAt(Myindex, 7).toString());
         MediumPrice.setText(model.getValueAt(Myindex, 2).toString());
         LargeQty.setText(model.getValueAt(Myindex, 2).toString());
         LargePrice.setText(model.getValueAt(Myindex, 2).toString());
