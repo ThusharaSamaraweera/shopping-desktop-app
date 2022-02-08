@@ -224,6 +224,11 @@ public class manageProduct extends javax.swing.JFrame {
         EditBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         EditBtn.setForeground(new java.awt.Color(102, 102, 102));
         EditBtn.setText("Edit");
+        EditBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EditBtnMouseClicked(evt);
+            }
+        });
         EditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditBtnActionPerformed(evt);
@@ -243,9 +248,17 @@ public class manageProduct extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Product ID", "Product Name", "Main Category", "Sub Category", "Description", "Small Size Quantity", "Small Size Price", "Medium Size Quantity", "Medium Size Price", "Large Size Quantity", "Large Size Price"
+                "Product ID", "Product Name", "Main Category", "Sub Category", "Description", "Small Size Quantity", "Small Size Unit Price", "Medium Size Quantity", "Medium Size Unit Price", "Large Size Quantity", "Large Size Unit Price", "Image 1", "Image 2", "Image 3"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         ProductInfoTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ProductInfoTableMouseClicked(evt);
@@ -507,7 +520,8 @@ public class manageProduct extends javax.swing.JFrame {
                             .addComponent(Img3Path, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Img3Label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
@@ -627,6 +641,9 @@ public class manageProduct extends javax.swing.JFrame {
                     v.add(Rs.getInt("price_m"));
                     v.add(Rs.getInt("qty_l"));
                     v.add(Rs.getInt("price_l"));
+                    v.add(Rs.getString("img1"));
+                    v.add(Rs.getString("img2"));
+                    v.add(Rs.getString("img3"));
                 }
                 d.addRow(v);
             }
@@ -692,9 +709,6 @@ public class manageProduct extends javax.swing.JFrame {
     private void ProductInfoTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductInfoTableMouseClicked
         DefaultTableModel model = (DefaultTableModel)ProductInfoTable.getModel();
         int Myindex = ProductInfoTable.getSelectedRow();
-//        int ProductID;
-//        ProductID = model.getValueAt(Myindex, 0).toInt();
-        
         ProductNameTextfield.setText(model.getValueAt(Myindex, 1).toString());
         MainCategoryComboBox.setSelectedItem(model.getValueAt(Myindex, 2).toString());
         SubCategoryComboBox.setSelectedItem(model.getValueAt(Myindex, 3).toString());
@@ -705,10 +719,45 @@ public class manageProduct extends javax.swing.JFrame {
         MediumPrice.setText(model.getValueAt(Myindex, 8).toString());
         LargeQty.setText(model.getValueAt(Myindex, 9).toString());
         LargePrice.setText(model.getValueAt(Myindex, 10).toString());
-        Img1Path.setText(model.getValueAt(Myindex, 2).toString());
-        Img2Path.setText(model.getValueAt(Myindex, 2).toString());
-        Img3Path.setText(model.getValueAt(Myindex, 2).toString());
+        Img1Path.setText(model.getValueAt(Myindex, 11).toString());
+        Img2Path.setText(model.getValueAt(Myindex, 12).toString());
+        Img3Path.setText(model.getValueAt(Myindex, 13).toString());
     }//GEN-LAST:event_ProductInfoTableMouseClicked
+
+    int ProductID;
+    private void EditBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditBtnMouseClicked
+        DefaultTableModel model = (DefaultTableModel)ProductInfoTable.getModel();
+        int Myindex = ProductInfoTable.getSelectedRow();
+        
+        ProductID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
+        try{
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = Con.prepareStatement("update items set main_cat=?, cat_name=?, name=?, qty_s=?, qty_m=?, qty_l=?, price_s=?, price_m=?, price_l=?, img1=?, img2=?, img3=?, `desc`=? where item_id ="+ProductID);
+            
+            add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
+            add.setString(2,SubCategoryComboBox.getSelectedItem().toString());
+            add.setString(3, ProductNameTextfield.getText());
+            add.setInt(4, Integer.valueOf(SmallQty.getText()));
+            add.setInt(5, Integer.valueOf(MediumQty.getText()));
+            add.setInt(6, Integer.valueOf(LargeQty.getText()));
+            add.setDouble(7, Double.valueOf(SmallPrice.getText()));
+            add.setDouble(8, Double.valueOf(MediumPrice.getText()));
+            add.setDouble(9, Double.valueOf(LargePrice.getText()));
+            add.setString(10, Img1Path.getText());
+            add.setString(11, Img2Path.getText());
+            add.setString(12, Img3Path.getText());
+            add.setString(13, DescriptionTextArea.getText());
+            
+            row = add.executeUpdate();
+            JOptionPane.showMessageDialog(this,"Product Successfully Updated");
+            Con.close();
+            SelectProducts();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        
+    }//GEN-LAST:event_EditBtnMouseClicked
 
     /**
      * @param args the command line arguments
