@@ -6,6 +6,8 @@ package com.mycompany.shopping.app.admin.customer;
 
 import com.mycompany.shopping.app.admin.login.Login;
 import java.sql.*;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,7 +41,7 @@ public class Customers extends javax.swing.JFrame {
         SubTitle = new javax.swing.JLabel();
         body = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        productTable = new javax.swing.JTable();
         footer = new javax.swing.JPanel();
         Back = new javax.swing.JButton();
 
@@ -80,12 +82,9 @@ public class Customers extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "#", "First Name", "Last Name", "Email", "Phone number", "Country", "State", "Address", "Postel code", "Created data"
@@ -99,15 +98,15 @@ public class Customers extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setFillsViewportHeight(true);
-        jTable1.setFocusable(false);
-        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(8).setMinWidth(25);
+        productTable.setColumnSelectionAllowed(true);
+        productTable.setFillsViewportHeight(true);
+        productTable.setFocusable(false);
+        productTable.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        productTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(productTable);
+        productTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        if (productTable.getColumnModel().getColumnCount() > 0) {
+            productTable.getColumnModel().getColumn(8).setMinWidth(25);
         }
 
         body.setViewportView(jScrollPane1);
@@ -193,17 +192,56 @@ public class Customers extends javax.swing.JFrame {
     }//GEN-LAST:event_BackMouseClicked
 
     public void loadData(){
+        int noOfColums = 10;
+        int noOfRow = 1;
         try{
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             st = con.createStatement();
             String qu = "SELECT * FROM signup";
-            re = st.executeQuery(qu);
+            re = st.executeQuery(qu);          
+            
+            DefaultTableModel defaultTableModel = (DefaultTableModel)productTable.getModel();
+            defaultTableModel.setRowCount(0);
+            
+            Connection con1 = null;
+            Statement st1 = null;
+            ResultSet re1 = null;            
+            PreparedStatement pst = null;
+            
             while (re.next()) {
-                  
+                Vector vector = new Vector();
+                for(int i=1; i<=noOfColums; i++){
+
+                    pst = con.prepareStatement("SELECT * FROM customer_details WHERE signup_id=?");
+                    pst.setInt(1, Integer.parseInt(re.getString(1)));
+                    re1 =pst.executeQuery();
+                    
+                    re1.next();                    
+                    vector.add(noOfRow);
+                    vector.add(re.getString(2));                    
+                    vector.add(re.getString(3));
+                    vector.add(re.getString(4));
+                    if(re1.next()){
+                        vector.add(re1.getString(3));
+                        vector.add(re1.getString(4));
+                        vector.add(re1.getString(5));
+                        vector.add(re1.getString(6));
+                        vector.add(re1.getString(7));                        
+                    }else {
+                        vector.add("");
+                        vector.add("");
+                        vector.add("");
+                        vector.add("");
+                        vector.add("");                           
+                    }
+                    vector.add(re.getString(6));                    
+                }
+                defaultTableModel.addRow(vector);
             }
+            
         }catch(SQLException e){
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
     /**
@@ -251,6 +289,6 @@ public class Customers extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable productTable;
     // End of variables declaration//GEN-END:variables
 }
