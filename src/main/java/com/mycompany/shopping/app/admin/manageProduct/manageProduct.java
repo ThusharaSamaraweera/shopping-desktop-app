@@ -684,22 +684,43 @@ public class manageProduct extends javax.swing.JFrame {
         
     }//GEN-LAST:event_AddBtnMouseClicked
 
+    int dialogResult;
     private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
-        if(ProductID.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Enter the Product to be Deleted");
-        }else{
+        DefaultTableModel model = (DefaultTableModel)ProductInfoTable.getModel();
+        int Myindex = ProductInfoTable.getSelectedRow();
+        
+        ProductID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
+        dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the record?", "Warning",JOptionPane.YES_NO_OPTION);
+        
+        if(dialogResult == JOptionPane.YES_OPTION){
             try{
-                Con = DriverManager.getConnection("jdbc:derby//localhost:3306//textile shop","root","#19KKas99@%");
-                String ID = ProductID.getText();
-                String Query = "delete from root.items where item_id="+ID;
-                Statement Add = Con.createStatement();
-                Add.executeUpdate(Query);
-                SelectProducts();
-                JOptionPane.showMessageDialog(this,"Product Deleted Succsessfully");
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                add = Con.prepareStatement("delete from items where item_id =?"); 
+                add.setInt(1, ProductID);
+                
+                ProductNameTextfield.setText("");
+                MainCategoryComboBox.setSelectedItem("Men");
+                SubCategoryComboBox.setSelectedItem("Item 1");
+                DescriptionTextArea.setText("");
+                SmallQty.setText("");
+                SmallPrice.setText("");
+                MediumQty.setText("");
+                MediumPrice.setText("");
+                LargeQty.setText("");
+                LargePrice.setText("");
+                Img1Path.setText("");
+                Img2Path.setText("");
+                Img3Path.setText("");
+                
+                row = add.executeUpdate();
+                JOptionPane.showMessageDialog(this,"Product Successfully Deleted");
+                Con.close();
+            SelectProducts();
             }catch(SQLException e){
                 e.printStackTrace();
             }
         }
+        
     }//GEN-LAST:event_DeleteBtnMouseClicked
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
