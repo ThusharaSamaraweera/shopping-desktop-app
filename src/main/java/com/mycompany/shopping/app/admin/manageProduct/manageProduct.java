@@ -24,6 +24,7 @@ public class manageProduct extends javax.swing.JFrame {
      */
     public manageProduct() {
         initComponents();
+        SelectProducts();
     }
 
     /**
@@ -76,7 +77,6 @@ public class manageProduct extends javax.swing.JFrame {
         LargePrice = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 51));
 
@@ -435,7 +435,7 @@ public class manageProduct extends javax.swing.JFrame {
                                 .addComponent(LargePrice, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -466,9 +466,9 @@ public class manageProduct extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CategoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(MainCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SubCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SubCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(MainCategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(DescriptionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
@@ -593,12 +593,7 @@ public class manageProduct extends javax.swing.JFrame {
     private void LargePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LargePriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LargePriceActionPerformed
-
-    public manageProduct(){
-        initComponents();
-        SelectProducts();
-    }
-    
+  
     Connection Con = null;
     Statement St = null;
     ResultSet Rs = null;
@@ -606,9 +601,8 @@ public class manageProduct extends javax.swing.JFrame {
     
     public void SelectProducts(){
         try{
-            Con = DriverManager.getConnection("jdbc:derby//localhost:3306//textile shop","root","#19KKas99@%");
-            St = Con.createStatement();
-            Rs = St.executeQuery("select 8 from items");
+            Con = DriverManager.getConnection("jdbc:mysql//localhost:3306//textile_shop","root","#19KKas99@%");            St = Con.createStatement();
+            Rs = St.executeQuery("select * from items");
             ProductInfoTable.setModel(DbUtils.resultSetToTableModel(Rs));
         }catch(SQLException e){
             e.printStackTrace();
@@ -618,8 +612,8 @@ public class manageProduct extends javax.swing.JFrame {
     int row;
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         try{
-            Con = DriverManager.getConnection("jdbc:mysql//localhost:3306//textile shop","root","#19KKas99@%");
-            add = Con.prepareStatement("insert into items(main_cat, cat_name, name, qty_s, qty_m, qty_l, price_s, price_m, price_l, img1, img2, img3, desc) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = Con.prepareStatement("insert into items(main_cat, cat_name, name, qty_s, qty_m, qty_l, price_s, price_m, price_l, img1, img2, img3, `desc`) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             
             add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
             add.setString(2,SubCategoryComboBox.getSelectedItem().toString());
@@ -713,10 +707,8 @@ public class manageProduct extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new manageProduct().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new manageProduct().setVisible(true);
         });
     }
 
