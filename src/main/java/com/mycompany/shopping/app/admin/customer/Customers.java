@@ -217,7 +217,6 @@ public class Customers extends javax.swing.JFrame {
                     pst.setInt(1, Integer.parseInt(re.getString(1)));
                     re1 =pst.executeQuery();
                     
-                    re1.next();                    
                     vector.add(noOfRow);
                     vector.add(re.getString(2));                    
                     vector.add(re.getString(3));
