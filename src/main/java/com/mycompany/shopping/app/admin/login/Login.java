@@ -4,6 +4,7 @@
  */
 package com.mycompany.shopping.app.admin.login;
 
+import com.mycompany.shopping.app.admin.dashboard.Dashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -245,8 +246,8 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Enter your password");
                 return;
             } else if(rs.getString("password").equals(password)){
-                JOptionPane.showMessageDialog(this, "in");
-                
+                new Dashboard().setVisible(true);
+                this.dispose();
             }else {
                 JOptionPane.showMessageDialog(this, "Password is not valid.");
                 return;
@@ -286,7 +287,8 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                Login login = new Login();
+                login.setVisible(true);
             }
         });
     }
