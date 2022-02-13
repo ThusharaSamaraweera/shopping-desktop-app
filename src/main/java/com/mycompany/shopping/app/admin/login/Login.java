@@ -4,7 +4,7 @@
  */
 package com.mycompany.shopping.app.admin.login;
 
-import com.mycompany.shopping.app.admin.homeForm.HomeForm;
+import com.mycompany.shopping.app.admin.dashboard.Dashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -246,7 +246,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Enter your password");
                 return;
             } else if(rs.getString("password").equals(password)){
-                new HomeForm().setVisible(true);
+                new Dashboard().setVisible(true);
                 this.dispose();
             }else {
                 JOptionPane.showMessageDialog(this, "Password is not valid.");

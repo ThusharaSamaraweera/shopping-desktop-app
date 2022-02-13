@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.shopping.app.admin.homeForm;
+package com.mycompany.shopping.app.admin.dashboard;
 
+import com.mycompany.shopping.app.admin.customer.ManageCustomers;
 import com.mycompany.shopping.app.admin.login.Login;
 import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
 
@@ -12,12 +13,12 @@ import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
  *
  * @author Gayan Malinda
  */
-public class HomeForm extends javax.swing.JFrame {
+public class Dashboard extends javax.swing.JFrame {
 
     /**
      * Creates new form homeForm
      */
-    public HomeForm() {
+    public Dashboard() {
         initComponents();
     }
 
@@ -190,6 +191,11 @@ public class HomeForm extends javax.swing.JFrame {
 
         category.setBackground(new java.awt.Color(255, 204, 51));
         category.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        category.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoryMouseClicked(evt);
+            }
+        });
 
         categoryLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         categoryLabel.setForeground(new java.awt.Color(51, 51, 51));
@@ -234,7 +240,7 @@ public class HomeForm extends javax.swing.JFrame {
 
         userLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         userLabel.setForeground(new java.awt.Color(51, 51, 51));
-        userLabel.setText("USER");
+        userLabel.setText("ADMIN");
         userLabel.setBorder(null);
         userLabel.setCaretColor(new java.awt.Color(255, 255, 255));
         userLabel.addActionListener(new java.awt.event.ActionListener() {
@@ -270,6 +276,11 @@ public class HomeForm extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 0));
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel4MouseClicked(evt);
+            }
+        });
 
         customerIcon.setBackground(new java.awt.Color(255, 255, 255));
         customerIcon.setForeground(new java.awt.Color(255, 153, 51));
@@ -280,6 +291,11 @@ public class HomeForm extends javax.swing.JFrame {
         customerLabel.setText("CUSTOMER");
         customerLabel.setBorder(null);
         customerLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        customerLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerLabelMouseClicked(evt);
+            }
+        });
         customerLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customerLabelActionPerformed(evt);
@@ -458,9 +474,23 @@ public class HomeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_productMouseClicked
 
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productLabelMouseClicked
-       new ManageProudct().se
+       new ManageProduct().setVisible(true);
        this.dispose();
     }//GEN-LAST:event_productLabelMouseClicked
+
+    private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
+       new ManageCustomers().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jPanel4MouseClicked
+
+    private void customerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerLabelMouseClicked
+       new ManageCustomers().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_customerLabelMouseClicked
+
+    private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
+
+    }//GEN-LAST:event_categoryMouseClicked
 
     /**
      * @param args the command line arguments
@@ -479,21 +509,23 @@ public class HomeForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomeForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomeForm().setVisible(true);
+                new Dashboard().setVisible(true);
             }
         });
     }
