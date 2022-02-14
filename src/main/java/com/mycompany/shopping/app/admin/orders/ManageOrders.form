@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -263,10 +263,10 @@
                         <Column editable="true" title="Main catagory" type="java.lang.String"/>
                         <Column editable="true" title="Sub category" type="java.lang.String"/>
                         <Column editable="true" title="Small Quantity" type="java.lang.Integer"/>
-                        <Column editable="true" title="Medium Quantity" type="java.lang.Integer"/>
-                        <Column editable="true" title="Large Quantity" type="java.lang.Integer"/>
                         <Column editable="true" title="Small Price" type="java.lang.Integer"/>
+                        <Column editable="true" title="Medium Quantity" type="java.lang.Integer"/>
                         <Column editable="true" title="Medium Price" type="java.lang.Integer"/>
+                        <Column editable="true" title="Large Quantity" type="java.lang.Integer"/>
                         <Column editable="true" title="Large Price" type="java.lang.Integer"/>
                       </Table>
                     </Property>
@@ -323,6 +323,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ProductListTableMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -374,6 +377,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="OrdersTableMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

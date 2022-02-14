@@ -4,7 +4,6 @@
  */
 package com.mycompany.shopping.app.admin.orders;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -117,7 +116,7 @@ public class ManageOrders extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Item ID", "Main catagory", "Sub category", "Small Quantity", "Medium Quantity", "Large Quantity", "Small Price", "Medium Price", "Large Price"
+                "Item ID", "Main catagory", "Sub category", "Small Quantity", "Small Price", "Medium Quantity", "Medium Price", "Large Quantity", "Large Price"
             }
         ) {
             Class[] types = new Class [] {
@@ -126,6 +125,11 @@ public class ManageOrders extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        ProductListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProductListTableMouseClicked(evt);
             }
         });
         ProductListScrollPane2.setViewportView(ProductListTable);
@@ -146,6 +150,11 @@ public class ManageOrders extends javax.swing.JFrame {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        OrdersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrdersTableMouseClicked(evt);
             }
         });
         OrdersScrollPane2.setViewportView(OrdersTable);
@@ -368,6 +377,53 @@ public class ManageOrders extends javax.swing.JFrame {
     private void StateComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StateComboBoxMouseClicked
  
     }//GEN-LAST:event_StateComboBoxMouseClicked
+    
+    private void ProductListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductListTableMouseClicked
+
+    }//GEN-LAST:event_ProductListTableMouseClicked
+    
+    int customerID;
+    private void OrdersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrdersTableMouseClicked
+        DefaultTableModel model = (DefaultTableModel)OrdersTable.getModel();
+        int Myindex = OrdersTable.getSelectedRow();
+        
+        customerID = Integer.parseInt(model.getValueAt(Myindex, 1).toString());
+        
+        int c;
+        try{
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = Con.prepareStatement("SELECT item_id, main_cat, cat_name, s_qty, price_s, m_qty, price_m, l_qty, price_l FROM textile_shop.order WHERE order_customer_id ="+customerID);
+            Rs = add.executeQuery();
+            
+            ResultSetMetaData Rsd = Rs.getMetaData();
+            c = Rsd.getColumnCount();
+            
+            DefaultTableModel d = (DefaultTableModel)ProductListTable.getModel();
+            d.setRowCount(0);
+            
+            while(Rs.next()){
+                Vector v = new Vector();
+                
+                for(int i=1; i<=c; i++){
+                    v.add(Rs.getInt("item_id"));
+                    v.add(Rs.getString("main_cat"));
+                    v.add(Rs.getString("cat_name"));
+                    v.add(Rs.getInt("s_qty"));
+                    v.add(Rs.getInt("price_s"));
+                    v.add(Rs.getInt("m_qty"));
+                    v.add(Rs.getInt("price_m"));
+                    v.add(Rs.getInt("l_qty"));
+                    v.add(Rs.getInt("price_l"));                   
+                }
+                d.addRow(v);
+            }
+            
+            Con.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_OrdersTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -378,13 +434,9 @@ public class ManageOrders extends javax.swing.JFrame {
     ResultSet Rs = null;
     PreparedStatement add = null;
     
-    
-    String state;
     public void SelectOrders(){
         int c;
         try{
-            state = st;
-            
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
             add = Con.prepareStatement("SELECT id, order_customer_id, date_and_time, state FROM textile_shop.order;");
             Rs = add.executeQuery();
