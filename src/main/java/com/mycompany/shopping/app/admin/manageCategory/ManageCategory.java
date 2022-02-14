@@ -109,6 +109,7 @@ public class ManageCategory extends javax.swing.JFrame {
         AddBtn.setBackground(new java.awt.Color(255, 204, 0));
         AddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         AddBtn.setText("ADD");
+        AddBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AddBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AddBtnMouseClicked(evt);
@@ -148,6 +149,7 @@ public class ManageCategory extends javax.swing.JFrame {
         updateBtn.setBackground(new java.awt.Color(255, 204, 0));
         updateBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateBtn.setText("Update");
+        updateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         updateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateBtnMouseClicked(evt);
@@ -157,6 +159,7 @@ public class ManageCategory extends javax.swing.JFrame {
         removeBtn.setBackground(new java.awt.Color(255, 204, 0));
         removeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         removeBtn.setText("REMOVE");
+        removeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -253,21 +256,39 @@ public class ManageCategory extends javax.swing.JFrame {
 
     private void updateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateBtnMouseClicked
         DefaultTableModel defaultTableModel = (DefaultTableModel)categoryTable.getModel();
-        int setectIndex = categoryTable.getSelectedRow();
+        int selectIndex = categoryTable.getSelectedRow();
         
-        int id = Integer.parseInt(defaultTableModel.getValueAt(setectIndex, 0).toString());
+        // validation
+        if(selectIndex == -1){
+            JOptionPane.showMessageDialog(null, "Select category in table");   
+            return;
+        }
+            
+        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());
         String collection = collectionDropdown.getSelectedItem().toString();
         String category = CategoryNameTextField.getText();
-         
+        
+        
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             pst = con.prepareStatement("UPDATE category set main_cat=?, name=? WHERE category_id=?");
             pst.setString(1, collection);
             pst.setString(2, category);
             pst.setInt(3, id);
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Category updated successfully");
-            loadData();
+            
+//            JOptionPane.showMessageDialog(null, "Category updated successfully");
+            
+            int result = JOptionPane.showConfirmDialog(null,"Want to update?", "Swing Tester",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+              JOptionPane.showMessageDialog(null, "Category updated successfully");
+              pst.executeUpdate();
+              loadData();
+            }else if(result == JOptionPane.NO_OPTION){
+              JOptionPane.showMessageDialog(null, "Update is canceled");
+            }
+            
 
             collectionDropdown.setSelectedIndex(-1);
             CategoryNameTextField.setText("");
@@ -324,7 +345,7 @@ public class ManageCategory extends javax.swing.JFrame {
     
     public void loadData(){
         int noOfColumns = 4;
-            
+        collectionDropdown.setSelectedIndex(-1);
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             st = con.createStatement();
