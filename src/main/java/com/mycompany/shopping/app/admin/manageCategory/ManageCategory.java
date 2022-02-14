@@ -252,15 +252,39 @@ public class ManageCategory extends javax.swing.JFrame {
     }//GEN-LAST:event_AddBtnMouseClicked
 
     private void updateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateBtnMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel)categoryTable.getModel();
+        int setectIndex = categoryTable.getSelectedRow();
         
+        int id = Integer.parseInt(defaultTableModel.getValueAt(setectIndex, 0).toString());
+        String collection = collectionDropdown.getSelectedItem().toString();
+        String category = CategoryNameTextField.getText();
+         
+        try{
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+            pst = con.prepareStatement("UPDATE category set main_cat=?, name=? WHERE category_id=?");
+            pst.setString(1, collection);
+            pst.setString(2, category);
+            pst.setInt(3, id);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Category updated successfully");
+            loadData();
+
+            collectionDropdown.setSelectedIndex(-1);
+            CategoryNameTextField.setText("");
+            collectionDropdown.requestFocus(); 
+            
+        } catch(SQLException e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_updateBtnMouseClicked
 
     private void categoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryTableMouseClicked
         DefaultTableModel defaultTableModel = (DefaultTableModel)categoryTable.getModel();
         int setectIndex = categoryTable.getSelectedRow();
-        
-        CategoryNameTextField.setText(defaultTableModel.getValueAt(setectIndex, 3).toString());
-        collectionDropdown.setSelectedItem(defaultTableModel.getValueAt(setectIndex, 2).toString());
+
+        collectionDropdown.setSelectedItem(defaultTableModel.getValueAt(setectIndex, 1).toString());        
+        CategoryNameTextField.setText(defaultTableModel.getValueAt(setectIndex, 2).toString());
+
     }//GEN-LAST:event_categoryTableMouseClicked
 
     /**
