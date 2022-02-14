@@ -418,13 +418,32 @@ public class ManageOrders extends javax.swing.JFrame {
                 d.addRow(v);
             }
             
+            setTextFields(customerID);
             Con.close();
         }catch(SQLException e){
             e.printStackTrace();
         }
         
+        
+        
     }//GEN-LAST:event_OrdersTableMouseClicked
 
+    public void setTextFields(int customerID){
+        try{
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = Con.prepareStatement("SELECT id, first_name, last_name, phone_number, email, address_line_1, address_line_2, state, country, postel_code FROM textile_shop.order_customer WHERE signup_id ="+customerID);
+            Rs = add.executeQuery();
+            
+            FirstNameTextField.setText(Rs.getString("first_name"));
+            LastNameTextField.setText(Rs.getString("last_name"));
+            
+            Con.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
