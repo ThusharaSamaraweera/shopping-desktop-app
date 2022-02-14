@@ -6,8 +6,12 @@ package com.mycompany.shopping.app.admin.manageCategory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,12 +25,14 @@ public class ManageCategory extends javax.swing.JFrame {
      */
     public ManageCategory() {
         initComponents();
+        loadData();
     }
     
     Connection con = null;
     Statement st = null;
     ResultSet re = null;
-
+    PreparedStatement pst = null;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,9 +46,9 @@ public class ManageCategory extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         MainTitle = new javax.swing.JLabel();
         SubTitle = new javax.swing.JLabel();
-        CategoryNameLabel = new javax.swing.JLabel();
-        CollectionDropdown = new javax.swing.JComboBox<>();
-        CollectionNameLabel1 = new javax.swing.JLabel();
+        categoryNameLabel = new javax.swing.JLabel();
+        collectionDropdown = new javax.swing.JComboBox<>();
+        collectionNameLabel = new javax.swing.JLabel();
         CategoryNameTextField = new javax.swing.JTextField();
         AddBtn = new javax.swing.JButton();
         ScrollPane = new javax.swing.JScrollPane();
@@ -89,20 +95,25 @@ public class ManageCategory extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        CategoryNameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CategoryNameLabel.setText("Category Name");
+        categoryNameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        categoryNameLabel.setText("Category Name");
 
-        CollectionDropdown.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CollectionDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        collectionDropdown.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        collectionDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Men", "Women", "Kids" }));
 
-        CollectionNameLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        CollectionNameLabel1.setText(" Collection Name");
+        collectionNameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        collectionNameLabel.setText(" Collection Name");
 
         CategoryNameTextField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         AddBtn.setBackground(new java.awt.Color(255, 204, 0));
         AddBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         AddBtn.setText("ADD");
+        AddBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddBtnMouseClicked(evt);
+            }
+        });
 
         ScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         ScrollPane.setFocusable(false);
@@ -124,6 +135,11 @@ public class ManageCategory extends javax.swing.JFrame {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         ScrollPane.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(2).setMinWidth(250);
@@ -132,6 +148,11 @@ public class ManageCategory extends javax.swing.JFrame {
         updateBtn.setBackground(new java.awt.Color(255, 204, 0));
         updateBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         updateBtn.setText("Update");
+        updateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateBtnMouseClicked(evt);
+            }
+        });
 
         removeBtn.setBackground(new java.awt.Color(255, 204, 0));
         removeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -149,11 +170,11 @@ public class ManageCategory extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CategoryNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CollectionNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(categoryNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(collectionNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CollectionDropdown, 0, 174, Short.MAX_VALUE)
+                            .addComponent(collectionDropdown, 0, 174, Short.MAX_VALUE)
                             .addComponent(CategoryNameTextField)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(AddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,11 +194,11 @@ public class ManageCategory extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CollectionDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CollectionNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(collectionDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(collectionNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CategoryNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categoryNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CategoryNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -206,6 +227,37 @@ public class ManageCategory extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
+        String collection = collectionDropdown.getSelectedItem().toString();
+        String category = CategoryNameTextField.getText();
+        
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+            pst =  con.prepareStatement("INSERT INTO category(main_cat, name) VALUES (?,?)");
+            pst.setString(1, collection);
+            pst.setString(2, category);
+            
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Category added successfully");
+            loadData();
+
+            collectionDropdown.setSelectedIndex(-1);
+            CategoryNameTextField.setText("");
+            collectionDropdown.requestFocus();            
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+           
+    }//GEN-LAST:event_AddBtnMouseClicked
+
+    private void updateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateBtnMouseClicked
+        
+    }//GEN-LAST:event_updateBtnMouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -243,30 +295,41 @@ public class ManageCategory extends javax.swing.JFrame {
     }
     
     public void loadData(){
-        int NoOfColumns = 4;
+        int noOfColumns = 4;
             
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             st = con.createStatement();
-            String qu = "SELECT * FROM signup";
+            String qu = "SELECT * FROM category";
             re = st.executeQuery(qu);          
+                   
+            DefaultTableModel defaultTableModel = (DefaultTableModel)jTable1.getModel();
+            defaultTableModel.setRowCount(0);            
             
-            DefaultTableModel defaultTableModel = (DefaultTableModel)productTable.getModel();
-            defaultTableModel.setRowCount(0); 
-        } catch(Exception e){
+            while(re.next()){
+                Vector vector = new Vector();
+                for(int i=1; i<=noOfColumns; i++){
+                    vector.add(re.getString(1));                
+                    vector.add(re.getString(2));
+                    vector.add(re.getString(3));                
+                    vector.add(re.getString(4));                    
+                }
+                defaultTableModel.addRow(vector);
+            }
+        } catch(SQLException e){
             System.out.println(e);
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;
-    private javax.swing.JLabel CategoryNameLabel;
     private javax.swing.JTextField CategoryNameTextField;
-    private javax.swing.JComboBox<String> CollectionDropdown;
-    private javax.swing.JLabel CollectionNameLabel1;
     private javax.swing.JLabel MainTitle;
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JLabel SubTitle;
+    private javax.swing.JLabel categoryNameLabel;
+    private javax.swing.JComboBox<String> collectionDropdown;
+    private javax.swing.JLabel collectionNameLabel;
     private javax.swing.JPanel header;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTable1;
