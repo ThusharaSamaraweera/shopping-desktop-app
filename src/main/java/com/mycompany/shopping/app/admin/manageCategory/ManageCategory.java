@@ -160,6 +160,11 @@ public class ManageCategory extends javax.swing.JFrame {
         removeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         removeBtn.setText("REMOVE");
         removeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeBtnMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -267,8 +272,7 @@ public class ManageCategory extends javax.swing.JFrame {
         int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());
         String collection = collectionDropdown.getSelectedItem().toString();
         String category = CategoryNameTextField.getText();
-        
-        
+                
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             pst = con.prepareStatement("UPDATE category set main_cat=?, name=? WHERE category_id=?");
@@ -278,7 +282,7 @@ public class ManageCategory extends javax.swing.JFrame {
             
 //            JOptionPane.showMessageDialog(null, "Category updated successfully");
             
-            int result = JOptionPane.showConfirmDialog(null,"Want to update?", "Swing Tester",
+            int result = JOptionPane.showConfirmDialog(null,"Want to update?", "Warning",
                JOptionPane.YES_NO_OPTION,
                JOptionPane.QUESTION_MESSAGE);
             if(result == JOptionPane.YES_OPTION){
@@ -307,6 +311,42 @@ public class ManageCategory extends javax.swing.JFrame {
         CategoryNameTextField.setText(defaultTableModel.getValueAt(setectIndex, 2).toString());
 
     }//GEN-LAST:event_categoryTableMouseClicked
+
+    private void removeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeBtnMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel)categoryTable.getModel();
+        int selectIndex = categoryTable.getSelectedRow();
+        
+        // validation
+        if(selectIndex == -1){
+            JOptionPane.showMessageDialog(null, "Select category in table");   
+            return;
+        }
+            
+        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());      
+        
+        int result = JOptionPane.showConfirmDialog(null,"Want to delete?", "Warning",
+           JOptionPane.YES_NO_OPTION,
+           JOptionPane.QUESTION_MESSAGE);
+        
+        if(result == JOptionPane.YES_OPTION){
+          try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+            pst = con.prepareStatement("DELETE from category WHERE category_id=?");
+            pst.setInt(1, id);              
+              
+            JOptionPane.showMessageDialog(null, "Category removed successfully");
+            pst.executeUpdate();
+            loadData();   
+            
+            collectionDropdown.setSelectedIndex(-1);
+            CategoryNameTextField.setText("");
+            collectionDropdown.requestFocus(); 
+          } catch(SQLException e){
+              System.out.println(e);
+          }
+        }
+        
+    }//GEN-LAST:event_removeBtnMouseClicked
 
     /**
      * @param args the command line arguments
