@@ -4,6 +4,17 @@
  */
 package com.mycompany.shopping.app.admin.orders;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author THUSH
@@ -13,8 +24,11 @@ public class ManageOrders extends javax.swing.JFrame {
     /**
      * Creates new form ManageOrders
      */
+    
     public ManageOrders() {
         initComponents();
+        SelectOrders();
+        
     }
 
     /**
@@ -30,18 +44,18 @@ public class ManageOrders extends javax.swing.JFrame {
         MainTitle = new javax.swing.JLabel();
         SubTitle = new javax.swing.JLabel();
         body = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        ProductListScrollPane1 = new javax.swing.JScrollPane();
+        ProductListScrollPane2 = new javax.swing.JScrollPane();
+        ProductListTable = new javax.swing.JTable();
+        OrdersScrollPane1 = new javax.swing.JScrollPane();
+        OrdersScrollPane2 = new javax.swing.JScrollPane();
+        OrdersTable = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        ProductList = new javax.swing.JLabel();
+        StateComboBox = new javax.swing.JComboBox<>();
+        Orders = new javax.swing.JLabel();
         FirstNameTextField = new javax.swing.JTextField();
         FirstName = new javax.swing.JLabel();
         LastName = new javax.swing.JLabel();
@@ -50,15 +64,15 @@ public class ManageOrders extends javax.swing.JFrame {
         PhoneNo = new javax.swing.JLabel();
         EmailTextField = new javax.swing.JTextField();
         Email = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        AddressLine1TextField = new javax.swing.JTextField();
         AddressLine1 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        AddressLine2TextField = new javax.swing.JTextField();
         AddressLine2 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        StateOrDivisionTextField = new javax.swing.JTextField();
         StateOrDivision = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        CountryTextField = new javax.swing.JTextField();
         Country = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        PostelCodeTextField = new javax.swing.JTextField();
         PostelCode = new javax.swing.JLabel();
         footer = new javax.swing.JPanel();
 
@@ -98,7 +112,7 @@ public class ManageOrders extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        ProductListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -114,11 +128,11 @@ public class ManageOrders extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        ProductListScrollPane2.setViewportView(ProductListTable);
 
-        jScrollPane1.setViewportView(jScrollPane2);
+        ProductListScrollPane1.setViewportView(ProductListScrollPane2);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        OrdersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -134,9 +148,9 @@ public class ManageOrders extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTable2);
+        OrdersScrollPane2.setViewportView(OrdersTable);
 
-        jScrollPane3.setViewportView(jScrollPane4);
+        OrdersScrollPane1.setViewportView(OrdersScrollPane2);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -161,13 +175,18 @@ public class ManageOrders extends javax.swing.JFrame {
 
         jScrollPane5.setViewportView(jScrollPane6);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Product List");
+        ProductList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ProductList.setText("Product List");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select State", "All", "Pending", "Received" }));
+        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select State", "All", "Pending", "Received" }));
+        StateComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StateComboBoxMouseClicked(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Orders");
+        Orders.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Orders.setText("Orders");
 
         FirstName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         FirstName.setText("First Name");
@@ -183,27 +202,17 @@ public class ManageOrders extends javax.swing.JFrame {
         Email.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Email.setText("Email");
 
-        jTextField5.setText("jTextField1");
-
         AddressLine1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         AddressLine1.setText("Address line 1");
-
-        jTextField6.setText("jTextField1");
 
         AddressLine2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         AddressLine2.setText("Address line 2");
 
-        jTextField7.setText("jTextField1");
-
         StateOrDivision.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         StateOrDivision.setText("State/Division");
 
-        jTextField8.setText("jTextField1");
-
         Country.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Country.setText("Country");
-
-        jTextField9.setText("jTextField1");
 
         PostelCode.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         PostelCode.setText("Postel Code");
@@ -241,28 +250,28 @@ public class ManageOrders extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField6)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(AddressLine2TextField)
+                                .addComponent(AddressLine1TextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField9)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(PostelCodeTextField)
+                                .addComponent(CountryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(StateOrDivisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(110, 110, 110))
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(bodyLayout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bodyLayout.createSequentialGroup()
                                 .addGap(235, 235, 235)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58))))
         );
         bodyLayout.setVerticalGroup(
@@ -272,15 +281,15 @@ public class ManageOrders extends javax.swing.JFrame {
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(StateComboBox)
+                            .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(3, 3, 3)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(bodyLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(2, 2, 2)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(LastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,23 +304,23 @@ public class ManageOrders extends javax.swing.JFrame {
                     .addComponent(PhoneNo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddressLine1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddressLine1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddressLine2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddressLine2))
                 .addGap(8, 8, 8)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StateOrDivisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StateOrDivision))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CountryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Country))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PostelCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PostelCode))
                 .addGap(35, 35, 35))
             .addGroup(bodyLayout.createSequentialGroup()
@@ -356,9 +365,56 @@ public class ManageOrders extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void StateComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StateComboBoxMouseClicked
+ 
+    }//GEN-LAST:event_StateComboBoxMouseClicked
+
     /**
      * @param args the command line arguments
      */
+    
+    Connection Con = null;
+    Statement St = null;
+    ResultSet Rs = null;
+    PreparedStatement add = null;
+    
+    
+    String state;
+    public void SelectOrders(){
+        int c;
+        try{
+            state = st;
+            
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = Con.prepareStatement("SELECT id, order_customer_id, date_and_time, state FROM textile_shop.order;");
+            Rs = add.executeQuery();
+            
+            ResultSetMetaData Rsd = Rs.getMetaData();
+            c = Rsd.getColumnCount();
+            
+            DefaultTableModel d = (DefaultTableModel)OrdersTable.getModel();
+            d.setRowCount(0);
+            
+            while(Rs.next()){
+                Vector v = new Vector();
+                
+                for(int i=1; i<=c; i++){
+                    v.add(Rs.getInt("id"));
+                    v.add(Rs.getInt("order_customer_id"));
+                    v.add(Rs.getString("date_and_time"));
+                    v.add(Rs.getString("state"));
+                    
+                }
+                d.addRow(v);
+            }
+            
+            Con.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -393,8 +449,11 @@ public class ManageOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AddressLine1;
+    private javax.swing.JTextField AddressLine1TextField;
     private javax.swing.JLabel AddressLine2;
+    private javax.swing.JTextField AddressLine2TextField;
     private javax.swing.JLabel Country;
+    private javax.swing.JTextField CountryTextField;
     private javax.swing.JLabel Email;
     private javax.swing.JTextField EmailTextField;
     private javax.swing.JLabel FirstName;
@@ -402,30 +461,27 @@ public class ManageOrders extends javax.swing.JFrame {
     private javax.swing.JLabel LastName;
     private javax.swing.JTextField LastNameTextField;
     private javax.swing.JLabel MainTitle;
+    private javax.swing.JLabel Orders;
+    private javax.swing.JScrollPane OrdersScrollPane1;
+    private javax.swing.JScrollPane OrdersScrollPane2;
+    private javax.swing.JTable OrdersTable;
     private javax.swing.JLabel PhoneNo;
     private javax.swing.JTextField PhoneNoTextField;
     private javax.swing.JLabel PostelCode;
+    private javax.swing.JTextField PostelCodeTextField;
+    private javax.swing.JLabel ProductList;
+    private javax.swing.JScrollPane ProductListScrollPane1;
+    private javax.swing.JScrollPane ProductListScrollPane2;
+    private javax.swing.JTable ProductListTable;
+    private javax.swing.JComboBox<String> StateComboBox;
     private javax.swing.JLabel StateOrDivision;
+    private javax.swing.JTextField StateOrDivisionTextField;
     private javax.swing.JLabel SubTitle;
     private javax.swing.JPanel body;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
