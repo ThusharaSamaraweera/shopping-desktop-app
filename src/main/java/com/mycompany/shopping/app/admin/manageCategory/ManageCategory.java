@@ -52,7 +52,7 @@ public class ManageCategory extends javax.swing.JFrame {
         CategoryNameTextField = new javax.swing.JTextField();
         AddBtn = new javax.swing.JButton();
         ScrollPane = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        categoryTable = new javax.swing.JTable();
         updateBtn = new javax.swing.JButton();
         removeBtn = new javax.swing.JButton();
 
@@ -118,7 +118,7 @@ public class ManageCategory extends javax.swing.JFrame {
         ScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         ScrollPane.setFocusable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        categoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -134,15 +134,15 @@ public class ManageCategory extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        categoryTable.getTableHeader().setReorderingAllowed(false);
+        categoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                categoryTableMouseClicked(evt);
             }
         });
-        ScrollPane.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setMinWidth(250);
+        ScrollPane.setViewportView(categoryTable);
+        if (categoryTable.getColumnModel().getColumnCount() > 0) {
+            categoryTable.getColumnModel().getColumn(2).setMinWidth(250);
         }
 
         updateBtn.setBackground(new java.awt.Color(255, 204, 0));
@@ -255,9 +255,13 @@ public class ManageCategory extends javax.swing.JFrame {
         
     }//GEN-LAST:event_updateBtnMouseClicked
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void categoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryTableMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel)categoryTable.getModel();
+        int setectIndex = categoryTable.getSelectedRow();
+        
+        CategoryNameTextField.setText(defaultTableModel.getValueAt(setectIndex, 3).toString());
+        collectionDropdown.setSelectedItem(defaultTableModel.getValueAt(setectIndex, 2).toString());
+    }//GEN-LAST:event_categoryTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -303,7 +307,7 @@ public class ManageCategory extends javax.swing.JFrame {
             String qu = "SELECT * FROM category";
             re = st.executeQuery(qu);          
                    
-            DefaultTableModel defaultTableModel = (DefaultTableModel)jTable1.getModel();
+            DefaultTableModel defaultTableModel = (DefaultTableModel)categoryTable.getModel();
             defaultTableModel.setRowCount(0);            
             
             while(re.next()){
@@ -328,11 +332,11 @@ public class ManageCategory extends javax.swing.JFrame {
     private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JLabel SubTitle;
     private javax.swing.JLabel categoryNameLabel;
+    private javax.swing.JTable categoryTable;
     private javax.swing.JComboBox<String> collectionDropdown;
     private javax.swing.JLabel collectionNameLabel;
     private javax.swing.JPanel header;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton removeBtn;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
