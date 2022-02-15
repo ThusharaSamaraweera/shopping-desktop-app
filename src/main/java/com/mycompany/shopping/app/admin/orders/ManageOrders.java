@@ -28,7 +28,7 @@ public class ManageOrders extends javax.swing.JFrame {
     
     public ManageOrders() {
         initComponents();
-        SelectOrders();   
+        SelectOrders();
     }
 
     /**
@@ -76,6 +76,7 @@ public class ManageOrders extends javax.swing.JFrame {
         SetStateBtn = new javax.swing.JButton();
         DeleteOrderBtn = new javax.swing.JButton();
         HomeBtn = new javax.swing.JButton();
+        SearchBtn = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -264,6 +265,24 @@ public class ManageOrders extends javax.swing.JFrame {
             }
         });
 
+        SearchBtn.setBackground(new java.awt.Color(255, 204, 51));
+        SearchBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        SearchBtn.setForeground(new java.awt.Color(102, 102, 102));
+        SearchBtn.setText("Search");
+        SearchBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SearchBtnMouseEntered(evt);
+            }
+        });
+        SearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
@@ -277,7 +296,9 @@ public class ManageOrders extends javax.swing.JFrame {
                             .addGroup(bodyLayout.createSequentialGroup()
                                 .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(StateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(StateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(bodyLayout.createSequentialGroup()
@@ -338,17 +359,21 @@ public class ManageOrders extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bodyLayout.createSequentialGroup()
-                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StateComboBox1))
-                        .addGap(3, 3, 3)
-                        .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(bodyLayout.createSequentialGroup()
                         .addComponent(ProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(2, 2, 2)
+                        .addGap(3, 3, 3))
+                    .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(bodyLayout.createSequentialGroup()
+                            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(StateComboBox1))
+                            .addGap(3, 3, 3))
+                        .addGroup(bodyLayout.createSequentialGroup()
+                            .addComponent(SearchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(LastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LastName)
@@ -357,14 +382,14 @@ public class ManageOrders extends javax.swing.JFrame {
                     .addComponent(StateComboBox)
                     .addComponent(LastName1)
                     .addComponent(SetStateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Email)
-                    .addComponent(PhoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PhoneNo))
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bodyLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Email)
+                            .addComponent(PhoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PhoneNo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(AddressLine1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,7 +399,7 @@ public class ManageOrders extends javax.swing.JFrame {
                             .addComponent(AddressLine2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(AddressLine2)))
                     .addGroup(bodyLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                        .addGap(56, 56, 56)
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(DeleteOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -566,6 +591,51 @@ public class ManageOrders extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_HomeBtnMouseEntered
 
+    private void SearchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseClicked
+        if(StateComboBox1.getSelectedItem().equals("Pending") || StateComboBox1.getSelectedItem().equals("Received")){
+            int c;
+            String s = StateComboBox1.getSelectedItem().toString();
+            try{
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                add = Con.prepareStatement("SELECT id, order_customer_id, date_and_time, state FROM textile_shop.order WHERE state="+s);
+                Rs = add.executeQuery();
+
+                ResultSetMetaData Rsd = Rs.getMetaData();
+                c = Rsd.getColumnCount();
+
+                DefaultTableModel d = (DefaultTableModel)OrdersTable.getModel();
+                d.setRowCount(0);
+
+                while(Rs.next()){
+                    Vector v = new Vector();
+
+                    for(int i=1; i<=c; i++){
+                        v.add(Rs.getInt("id"));
+                        v.add(Rs.getInt("order_customer_id"));
+                        v.add(Rs.getString("date_and_time"));
+                        v.add(Rs.getString("state"));
+
+                    }
+                    d.addRow(v);
+                }
+
+                Con.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        } else {
+            SelectOrders();
+        }
+    }//GEN-LAST:event_SearchBtnMouseClicked
+
+    private void SearchBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseEntered
+        
+    }//GEN-LAST:event_SearchBtnMouseEntered
+
+    private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SearchBtnActionPerformed
+
     public void setTextFields(int customerID){
         try{
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
@@ -635,7 +705,7 @@ public class ManageOrders extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+        
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -698,6 +768,7 @@ public class ManageOrders extends javax.swing.JFrame {
     private javax.swing.JScrollPane ProductListScrollPane1;
     private javax.swing.JScrollPane ProductListScrollPane2;
     private javax.swing.JTable ProductListTable;
+    private javax.swing.JButton SearchBtn;
     private javax.swing.JButton SetStateBtn;
     private javax.swing.JComboBox<String> StateComboBox;
     private javax.swing.JComboBox<String> StateComboBox1;
