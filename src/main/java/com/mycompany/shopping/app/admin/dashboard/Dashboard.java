@@ -8,6 +8,7 @@ package com.mycompany.shopping.app.admin.dashboard;
 import com.mycompany.shopping.app.admin.customer.ManageCustomers;
 import com.mycompany.shopping.app.admin.login.Login;
 import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
+import com.mycompany.shopping.app.admin.orders.ManageOrders;
 
 /**
  *
@@ -50,8 +51,8 @@ public class Dashboard extends javax.swing.JFrame {
         customerIcon = new javax.swing.JLabel();
         customerLabel = new javax.swing.JTextField();
         orders = new javax.swing.JPanel();
-        orderLabel = new javax.swing.JTextField();
         orderIcon = new javax.swing.JLabel();
+        OrderLabel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -331,45 +332,60 @@ public class Dashboard extends javax.swing.JFrame {
 
         orders.setBackground(new java.awt.Color(255, 204, 0));
         orders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        orderLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        orderLabel.setForeground(new java.awt.Color(51, 51, 51));
-        orderLabel.setText("ORDER");
-        orderLabel.setBorder(null);
-        orderLabel.setCaretColor(new java.awt.Color(255, 255, 255));
-        orderLabel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderLabelActionPerformed(evt);
+        orders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ordersMouseClicked(evt);
             }
         });
 
         orderIcon.setBackground(new java.awt.Color(255, 255, 255));
         orderIcon.setForeground(new java.awt.Color(255, 153, 51));
         orderIcon.setText("Icon 5");
+        orderIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderIconMouseClicked(evt);
+            }
+        });
+
+        OrderLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        OrderLabel.setForeground(new java.awt.Color(51, 51, 51));
+        OrderLabel.setText("ORDERS");
+        OrderLabel.setBorder(null);
+        OrderLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        OrderLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OrderLabelMouseClicked(evt);
+            }
+        });
+        OrderLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrderLabelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ordersLayout = new javax.swing.GroupLayout(orders);
         orders.setLayout(ordersLayout);
         ordersLayout.setHorizontalGroup(
             ordersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ordersLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(OrderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
             .addGroup(ordersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ordersLayout.createSequentialGroup()
-                    .addGap(17, 17, 17)
-                    .addGroup(ordersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(orderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(ordersLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addComponent(orderIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(27, 27, 27)
+                    .addComponent(orderIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(17, Short.MAX_VALUE)))
         );
         ordersLayout.setVerticalGroup(
             ordersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(ordersLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(OrderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(ordersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ordersLayout.createSequentialGroup()
-                    .addGap(20, 20, 20)
-                    .addComponent(orderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(43, 43, 43)
                     .addComponent(orderIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(20, Short.MAX_VALUE)))
         );
@@ -451,10 +467,6 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_customerLabelActionPerformed
 
-    private void orderLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderLabelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_orderLabelActionPerformed
-
     private void categoryLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryLabelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_categoryLabelActionPerformed
@@ -491,6 +503,25 @@ public class Dashboard extends javax.swing.JFrame {
     private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
 
     }//GEN-LAST:event_categoryMouseClicked
+
+    private void orderIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderIconMouseClicked
+        new ManageOrders().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_orderIconMouseClicked
+
+    private void ordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMouseClicked
+        new ManageOrders().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ordersMouseClicked
+
+    private void OrderLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrderLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrderLabelActionPerformed
+
+    private void OrderLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderLabelMouseClicked
+        new ManageOrders().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_OrderLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -531,6 +562,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField OrderLabel;
     private javax.swing.JPanel category;
     private javax.swing.JLabel categoryIcon;
     private javax.swing.JTextField categoryLabel;
@@ -544,7 +576,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel orderIcon;
-    private javax.swing.JTextField orderLabel;
     private javax.swing.JPanel orders;
     private javax.swing.JPanel product;
     private javax.swing.JLabel productIcon;

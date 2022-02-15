@@ -4,6 +4,7 @@
  */
 package com.mycompany.shopping.app.admin.orders;
 
+import com.mycompany.shopping.app.admin.dashboard.Dashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -69,6 +71,11 @@ public class ManageOrders extends javax.swing.JFrame {
         Country = new javax.swing.JLabel();
         PostelCodeTextField = new javax.swing.JTextField();
         PostelCode = new javax.swing.JLabel();
+        StateComboBox1 = new javax.swing.JComboBox<>();
+        LastName1 = new javax.swing.JLabel();
+        SetStateBtn = new javax.swing.JButton();
+        DeleteOrderBtn = new javax.swing.JButton();
+        HomeBtn = new javax.swing.JButton();
         footer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,7 +167,7 @@ public class ManageOrders extends javax.swing.JFrame {
         ProductList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ProductList.setText("Product List");
 
-        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select State", "All", "Pending", "Received" }));
+        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "State", "Pending", "Received" }));
         StateComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StateComboBoxMouseClicked(evt);
@@ -199,6 +206,64 @@ public class ManageOrders extends javax.swing.JFrame {
         PostelCode.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         PostelCode.setText("Postel Code");
 
+        StateComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select State", "All", "Pending", "Received" }));
+        StateComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StateComboBox1MouseClicked(evt);
+            }
+        });
+
+        LastName1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LastName1.setText("State");
+
+        SetStateBtn.setBackground(new java.awt.Color(255, 204, 51));
+        SetStateBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        SetStateBtn.setForeground(new java.awt.Color(102, 102, 102));
+        SetStateBtn.setText("Set State");
+        SetStateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SetStateBtnMouseClicked(evt);
+            }
+        });
+        SetStateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SetStateBtnActionPerformed(evt);
+            }
+        });
+
+        DeleteOrderBtn.setBackground(new java.awt.Color(255, 204, 51));
+        DeleteOrderBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        DeleteOrderBtn.setForeground(new java.awt.Color(102, 102, 102));
+        DeleteOrderBtn.setText("Delete Order");
+        DeleteOrderBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteOrderBtnMouseClicked(evt);
+            }
+        });
+        DeleteOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteOrderBtnActionPerformed(evt);
+            }
+        });
+
+        HomeBtn.setBackground(new java.awt.Color(255, 204, 51));
+        HomeBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        HomeBtn.setForeground(new java.awt.Color(102, 102, 102));
+        HomeBtn.setText("Home");
+        HomeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HomeBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                HomeBtnMouseEntered(evt);
+            }
+        });
+        HomeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bodyLayout = new javax.swing.GroupLayout(body);
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
@@ -206,6 +271,20 @@ public class ManageOrders extends javax.swing.JFrame {
             .addGroup(bodyLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(bodyLayout.createSequentialGroup()
+                                .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(StateComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(bodyLayout.createSequentialGroup()
+                                .addGap(235, 235, 235)
+                                .addComponent(ProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58))
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(PostelCode, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,21 +317,20 @@ public class ManageOrders extends javax.swing.JFrame {
                                 .addComponent(PostelCodeTextField)
                                 .addComponent(CountryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(StateOrDivisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(110, 488, Short.MAX_VALUE))
-                    .addGroup(bodyLayout.createSequentialGroup()
-                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(bodyLayout.createSequentialGroup()
-                                .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(bodyLayout.createSequentialGroup()
-                                .addGap(235, 235, 235)
-                                .addComponent(ProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(58, 58, 58))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
+                                .addComponent(LastName1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SetStateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
+                                .addComponent(DeleteOrderBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(157, 157, 157))))))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,8 +339,8 @@ public class ManageOrders extends javax.swing.JFrame {
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(StateComboBox)
-                            .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StateComboBox1))
                         .addGap(3, 3, 3)
                         .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
@@ -275,21 +353,31 @@ public class ManageOrders extends javax.swing.JFrame {
                     .addComponent(LastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LastName)
                     .addComponent(FirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FirstName))
+                    .addComponent(FirstName)
+                    .addComponent(StateComboBox)
+                    .addComponent(LastName1)
+                    .addComponent(SetStateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Email)
                     .addComponent(PhoneNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PhoneNo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(AddressLine1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddressLine1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(AddressLine2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddressLine2))
+                .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(AddressLine1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddressLine1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(AddressLine2TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(AddressLine2)))
+                    .addGroup(bodyLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DeleteOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(8, 8, 8)
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(StateOrDivisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,7 +390,7 @@ public class ManageOrders extends javax.swing.JFrame {
                 .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(PostelCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PostelCode))
-                .addGap(35, 35, 35))
+                .addContainerGap())
         );
 
         footer.setBackground(new java.awt.Color(255, 204, 51));
@@ -315,7 +403,7 @@ public class ManageOrders extends javax.swing.JFrame {
         );
         footerLayout.setVerticalGroup(
             footerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 6, Short.MAX_VALUE)
+            .addGap(0, 8, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -333,7 +421,7 @@ public class ManageOrders extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(footer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -395,6 +483,89 @@ public class ManageOrders extends javax.swing.JFrame {
         
     }//GEN-LAST:event_OrdersTableMouseClicked
 
+    private void StateComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StateComboBox1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StateComboBox1MouseClicked
+
+    int OrderID;
+    private void SetStateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SetStateBtnMouseClicked
+        DefaultTableModel model = (DefaultTableModel)OrdersTable.getModel();
+        int Myindex = OrdersTable.getSelectedRow();
+        
+        OrderID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
+        
+        try{
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = Con.prepareStatement("UPDATE textile_shop.order SET state=? WHERE id="+OrderID);
+            add.setString(1,StateComboBox.getSelectedItem().toString());
+            
+            row = add.executeUpdate();
+            JOptionPane.showMessageDialog(this,"State Successfully Updated");
+            Con.close();
+            SelectOrders();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_SetStateBtnMouseClicked
+
+    private void SetStateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetStateBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SetStateBtnActionPerformed
+
+    int dialogResult, row;
+    private void DeleteOrderBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteOrderBtnMouseClicked
+        DefaultTableModel model = (DefaultTableModel)OrdersTable.getModel();
+        int Myindex = OrdersTable.getSelectedRow();
+        
+        OrderID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
+        dialogResult = JOptionPane.showConfirmDialog(null, "Do you want to delete the Order?", "Warning",JOptionPane.YES_NO_OPTION);
+        
+        if(dialogResult == JOptionPane.YES_OPTION){
+            try{
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                add = Con.prepareStatement("DELETE FROM textile_shop.order WHERE id =?"); 
+                add.setInt(1, OrderID);
+                
+                FirstNameTextField.setText("");
+                LastNameTextField.setText("");
+                PhoneNoTextField.setText("");
+                EmailTextField.setText("");
+                AddressLine1TextField.setText("");
+                AddressLine2TextField.setText("");
+                StateOrDivisionTextField.setText("");
+                CountryTextField.setText("");
+                PostelCodeTextField.setText("");
+                StateComboBox.setSelectedItem("State");
+                
+                row = add.executeUpdate();
+                JOptionPane.showMessageDialog(this,"Order Successfully Deleted");
+                Con.close();
+                SelectOrders();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
+        
+    }//GEN-LAST:event_DeleteOrderBtnMouseClicked
+
+    private void DeleteOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteOrderBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteOrderBtnActionPerformed
+
+    private void HomeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeBtnMouseClicked
+        new Dashboard().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_HomeBtnMouseClicked
+
+    private void HomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeBtnActionPerformed
+
+    private void HomeBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeBtnMouseEntered
+
     public void setTextFields(int customerID){
         try{
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
@@ -412,9 +583,12 @@ public class ManageOrders extends javax.swing.JFrame {
                 CountryTextField.setText(Rs.getString("country"));
                 PostelCodeTextField.setText(Rs.getString("postel_code"));
             }
-            
-            
             Con.close();
+            
+            DefaultTableModel model = (DefaultTableModel)OrdersTable.getModel();
+            int Myindex = OrdersTable.getSelectedRow();
+            StateComboBox.setSelectedItem(model.getValueAt(Myindex, 3).toString());
+                   
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -502,11 +676,14 @@ public class ManageOrders extends javax.swing.JFrame {
     private javax.swing.JTextField AddressLine2TextField;
     private javax.swing.JLabel Country;
     private javax.swing.JTextField CountryTextField;
+    private javax.swing.JButton DeleteOrderBtn;
     private javax.swing.JLabel Email;
     private javax.swing.JTextField EmailTextField;
     private javax.swing.JLabel FirstName;
     private javax.swing.JTextField FirstNameTextField;
+    private javax.swing.JButton HomeBtn;
     private javax.swing.JLabel LastName;
+    private javax.swing.JLabel LastName1;
     private javax.swing.JTextField LastNameTextField;
     private javax.swing.JLabel MainTitle;
     private javax.swing.JLabel Orders;
@@ -521,7 +698,9 @@ public class ManageOrders extends javax.swing.JFrame {
     private javax.swing.JScrollPane ProductListScrollPane1;
     private javax.swing.JScrollPane ProductListScrollPane2;
     private javax.swing.JTable ProductListTable;
+    private javax.swing.JButton SetStateBtn;
     private javax.swing.JComboBox<String> StateComboBox;
+    private javax.swing.JComboBox<String> StateComboBox1;
     private javax.swing.JLabel StateOrDivision;
     private javax.swing.JTextField StateOrDivisionTextField;
     private javax.swing.JLabel SubTitle;
