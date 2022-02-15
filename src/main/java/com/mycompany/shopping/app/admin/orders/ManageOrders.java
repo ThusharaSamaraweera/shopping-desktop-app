@@ -26,8 +26,7 @@ public class ManageOrders extends javax.swing.JFrame {
     
     public ManageOrders() {
         initComponents();
-        SelectOrders();
-        
+        SelectOrders();   
     }
 
     /**
@@ -49,9 +48,6 @@ public class ManageOrders extends javax.swing.JFrame {
         OrdersScrollPane1 = new javax.swing.JScrollPane();
         OrdersScrollPane2 = new javax.swing.JScrollPane();
         OrdersTable = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
         ProductList = new javax.swing.JLabel();
         StateComboBox = new javax.swing.JComboBox<>();
         Orders = new javax.swing.JLabel();
@@ -161,29 +157,6 @@ public class ManageOrders extends javax.swing.JFrame {
 
         OrdersScrollPane1.setViewportView(OrdersScrollPane2);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Order ID", "Date and Time", "State"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane6.setViewportView(jTable3);
-
-        jScrollPane5.setViewportView(jScrollPane6);
-
         ProductList.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ProductList.setText("Product List");
 
@@ -265,9 +238,7 @@ public class ManageOrders extends javax.swing.JFrame {
                                 .addComponent(PostelCodeTextField)
                                 .addComponent(CountryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(StateOrDivisionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))
+                        .addGap(110, 488, Short.MAX_VALUE))
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(OrdersScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,10 +303,6 @@ public class ManageOrders extends javax.swing.JFrame {
                     .addComponent(PostelCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PostelCode))
                 .addGap(35, 35, 35))
-            .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(282, 282, 282)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
         );
 
         footer.setBackground(new java.awt.Color(255, 204, 51));
@@ -431,11 +398,21 @@ public class ManageOrders extends javax.swing.JFrame {
     public void setTextFields(int customerID){
         try{
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("SELECT id, first_name, last_name, phone_number, email, address_line_1, address_line_2, state, country, postel_code FROM textile_shop.order_customer WHERE signup_id ="+customerID);
+            add = Con.prepareStatement("SELECT first_name, last_name, phone_number, email, address_line_1, address_line_2, state, country, postel_code FROM textile_shop.order_customer WHERE signup_id ="+customerID);
             Rs = add.executeQuery();
             
-            FirstNameTextField.setText(Rs.getString("first_name"));
-            LastNameTextField.setText(Rs.getString("last_name"));
+            if(Rs.next()){
+                FirstNameTextField.setText(Rs.getString("first_name"));
+                LastNameTextField.setText(Rs.getString("last_name"));
+                PhoneNoTextField.setText(Rs.getString("phone_number"));
+                EmailTextField.setText(Rs.getString("email"));
+                AddressLine1TextField.setText(Rs.getString("address_line_1"));
+                AddressLine2TextField.setText(Rs.getString("address_line_2"));
+                StateOrDivisionTextField.setText(Rs.getString("state"));
+                CountryTextField.setText(Rs.getString("country"));
+                PostelCodeTextField.setText(Rs.getString("postel_code"));
+            }
+            
             
             Con.close();
         }catch(SQLException e){
@@ -551,8 +528,5 @@ public class ManageOrders extends javax.swing.JFrame {
     private javax.swing.JPanel body;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }
