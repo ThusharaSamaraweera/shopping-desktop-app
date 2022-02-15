@@ -592,12 +592,14 @@ public class ManageOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_HomeBtnMouseEntered
 
     private void SearchBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchBtnMouseClicked
+        
         if(StateComboBox1.getSelectedItem().equals("Pending") || StateComboBox1.getSelectedItem().equals("Received")){
             int c;
             String s = StateComboBox1.getSelectedItem().toString();
             try{
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-                add = Con.prepareStatement("SELECT id, order_customer_id, date_and_time, state FROM textile_shop.order WHERE state="+s);
+                add = Con.prepareStatement("SELECT id, order_customer_id, date_and_time, state FROM textile_shop.order WHERE state=?");
+                add.setString(1, s);
                 Rs = add.executeQuery();
 
                 ResultSetMetaData Rsd = Rs.getMetaData();

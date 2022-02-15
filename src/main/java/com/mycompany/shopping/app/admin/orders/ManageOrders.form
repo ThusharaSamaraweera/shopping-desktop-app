@@ -161,15 +161,11 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="AddressLine2TextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="AddressLine1TextField" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="PostelCodeTextField" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="CountryTextField" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="StateOrDivisionTextField" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="AddressLine2TextField" alignment="1" max="32767" attributes="0"/>
+                              <Component id="AddressLine1TextField" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
+                              <Component id="PostelCodeTextField" alignment="1" max="32767" attributes="0"/>
+                              <Component id="CountryTextField" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="StateOrDivisionTextField" alignment="1" min="-2" pref="114" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
