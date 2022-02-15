@@ -341,11 +341,31 @@ public class ManageAdmins extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Select admin type");
             return;            
         }
+        String adminTypeString = adminType.toString();
+        String adminTypeShort = null;
+        if(adminTypeString.equals("Super Admin")){
+            adminTypeShort = "SA";
+        }else if(adminTypeString.equals("Admin")){
+            adminTypeShort = "A";
+        }
         
         try {            
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
-            pst = con.prepareStatement("INSET INTO signup(first_name, last_name,email, password, user_type) VALUES (?,?,?,?)");
+            pst = con.prepareStatement("INSERT INTO signup(first_name, last_name,email, password, user_type) VALUES (?,?,?,?,?)");
+        
             pst.setString(1, firstName);
+            pst.setString(2, lastName);
+            pst.setString(3, email);
+            pst.setString(4, "12345");
+            pst.setString(5, adminTypeShort);
+            JOptionPane.showMessageDialog(null, "Added "+ adminTypeString +" successfully");
+            pst.executeUpdate();
+            loadData();
+            
+            adminTypeDropdown.setSelectedIndex(-1);
+            firstNameTextField.setText("");
+            lastNameTextField.setText("");
+            emailTextField.setText("");
             
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -407,8 +427,12 @@ public class ManageAdmins extends javax.swing.JFrame {
                     vector.add(re.getString("first_name"));
                     vector.add(re.getString("last_name"));
                     vector.add(re.getString("email"));
-                    vector.add(re.getString("createdAt"));
-                    vector.add(re.getString("user_type"));
+                    vector.add(re.getString("createdAt"));                    
+                    if(re.getString("user_type").equals("SA")){
+                        vector.add("Super Admin");                   
+                    } else{
+                        vector.add("Admin");                        
+                    }
                 }
                 defaultTableModel.addRow(vector);
 
