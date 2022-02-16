@@ -25,13 +25,12 @@
             <artifactId>commons-dbutils</artifactId>
             <version>1.7</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+     
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE121</version>
         </dependency>
-
+        
     </dependencies>
 </project>
