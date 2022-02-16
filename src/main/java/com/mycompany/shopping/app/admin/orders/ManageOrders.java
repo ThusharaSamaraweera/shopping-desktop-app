@@ -513,24 +513,31 @@ public class ManageOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_StateComboBox1MouseClicked
 
     int OrderID;
+    String OrderState;
     private void SetStateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SetStateBtnMouseClicked
         DefaultTableModel model = (DefaultTableModel)OrdersTable.getModel();
         int Myindex = OrdersTable.getSelectedRow();
         
         OrderID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
+        OrderState = model.getValueAt(Myindex, 3).toString();
         
-        try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("UPDATE textile_shop.order SET state=? WHERE id="+OrderID);
-            add.setString(1,StateComboBox.getSelectedItem().toString());
-            
-            row = add.executeUpdate();
-            JOptionPane.showMessageDialog(this,"State Successfully Updated");
-            Con.close();
-            SelectOrders();
-        }catch(SQLException e){
-            e.printStackTrace();
+        if(!(StateComboBox.getSelectedItem().equals(OrderState))){    
+            try{
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                add = Con.prepareStatement("UPDATE textile_shop.order SET state=? WHERE id="+OrderID);
+                add.setString(1,StateComboBox.getSelectedItem().toString());
+
+                row = add.executeUpdate();
+                JOptionPane.showMessageDialog(this,"State Successfully Updated");
+                Con.close();
+                SelectOrders();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Same State");
         }
+
 
     }//GEN-LAST:event_SetStateBtnMouseClicked
 
