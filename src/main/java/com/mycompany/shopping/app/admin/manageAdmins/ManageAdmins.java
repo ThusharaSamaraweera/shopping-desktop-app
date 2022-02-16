@@ -178,17 +178,17 @@ public class ManageAdmins extends javax.swing.JFrame {
 
         adminsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "First Name", "Last Name-", "Email", "AddedAt", "Type"
+                "ID", "First Name", "Last Name-", "Email", "AddedAt", "Type", "Actve"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -204,8 +204,12 @@ public class ManageAdmins extends javax.swing.JFrame {
         if (adminsTable.getColumnModel().getColumnCount() > 0) {
             adminsTable.getColumnModel().getColumn(0).setResizable(false);
             adminsTable.getColumnModel().getColumn(0).setPreferredWidth(10);
-            adminsTable.getColumnModel().getColumn(1).setMinWidth(125);
-            adminsTable.getColumnModel().getColumn(2).setMinWidth(125);
+            adminsTable.getColumnModel().getColumn(2).setResizable(false);
+            adminsTable.getColumnModel().getColumn(3).setResizable(false);
+            adminsTable.getColumnModel().getColumn(4).setResizable(false);
+            adminsTable.getColumnModel().getColumn(5).setResizable(false);
+            adminsTable.getColumnModel().getColumn(6).setResizable(false);
+            adminsTable.getColumnModel().getColumn(6).setPreferredWidth(50);
         }
 
         disableBtn.setBackground(new java.awt.Color(255, 204, 0));
@@ -440,7 +444,7 @@ public class ManageAdmins extends javax.swing.JFrame {
     }
     
     public void loadData(){
-        int noOfColums = 6;
+        int noOfColums = 7;
 
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
@@ -454,7 +458,7 @@ public class ManageAdmins extends javax.swing.JFrame {
             while(re.next()){
                 Vector vector = new Vector();
                 for(int i=1; i<=noOfColums; i++){
-                    vector.add(re.getString("signup_id"))
+                    vector.add(re.getString("signup_id"));
                     vector.add(re.getString("first_name"));
                     vector.add(re.getString("last_name"));
                     vector.add(re.getString("email"));
@@ -463,6 +467,12 @@ public class ManageAdmins extends javax.swing.JFrame {
                         vector.add("Super Admin");                   
                     } else{
                         vector.add("Admin");                        
+                    }
+
+                    if(re.getString("active").equals("1")){
+                        vector.add("Active");
+                    }else{
+                        vector.add("Inactive");
                     }
                 }
                 defaultTableModel.addRow(vector);
