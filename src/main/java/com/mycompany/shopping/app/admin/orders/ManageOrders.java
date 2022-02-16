@@ -598,7 +598,7 @@ public class ManageOrders extends javax.swing.JFrame {
             String s = StateComboBox1.getSelectedItem().toString();
             try{
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-                add = Con.prepareStatement("SELECT id, order_customer_id, date_and_time, state FROM textile_shop.order WHERE state=?");
+                add = Con.prepareStatement("SELECT id, order_customer_id, createdAt, state FROM textile_shop.order WHERE state=?");
                 add.setString(1, s);
                 Rs = add.executeQuery();
 
@@ -614,7 +614,7 @@ public class ManageOrders extends javax.swing.JFrame {
                     for(int i=1; i<=c; i++){
                         v.add(Rs.getInt("id"));
                         v.add(Rs.getInt("order_customer_id"));
-                        v.add(Rs.getString("date_and_time"));
+                        v.add(Rs.getString("createdAt"));
                         v.add(Rs.getString("state"));
 
                     }
@@ -680,7 +680,7 @@ public class ManageOrders extends javax.swing.JFrame {
         int c;
         try{
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("SELECT id, order_customer_id, date_and_time, state FROM textile_shop.order;");
+            add = Con.prepareStatement("SELECT id, order_customer_id, createdAt, state FROM textile_shop.order;");
             Rs = add.executeQuery();
             
             ResultSetMetaData Rsd = Rs.getMetaData();
@@ -695,7 +695,7 @@ public class ManageOrders extends javax.swing.JFrame {
                 for(int i=1; i<=c; i++){
                     v.add(Rs.getInt("id"));
                     v.add(Rs.getInt("order_customer_id"));
-                    v.add(Rs.getString("date_and_time"));
+                    v.add(Rs.getString("createdAt"));
                     v.add(Rs.getString("state"));
                     
                 }
