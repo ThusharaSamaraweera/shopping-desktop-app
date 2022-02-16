@@ -258,6 +258,11 @@ public class ManageAdmins extends javax.swing.JFrame {
         deactivateBtn.setBackground(new java.awt.Color(255, 204, 0));
         deactivateBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deactivateBtn.setText("DEACTIVATE");
+        deactivateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deactivateBtnMouseClicked(evt);
+            }
+        });
         deactivateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deactivateBtnActionPerformed(evt);
@@ -460,7 +465,7 @@ public class ManageAdmins extends javax.swing.JFrame {
             pst.setString(1, "1");   
             pst.setInt(2, id);
             
-            int result = JOptionPane.showConfirmDialog(null,"Want to active?", "Warning",
+            int result = JOptionPane.showConfirmDialog(null,"Want to activate?", "Warning",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
             if(result == JOptionPane.YES_OPTION){
@@ -473,6 +478,44 @@ public class ManageAdmins extends javax.swing.JFrame {
             System.out.println(ex);
         }
     }//GEN-LAST:event_activateBtnMouseClicked
+
+    private void deactivateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deactivateBtnMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel)adminsTable.getModel();
+        int selectIndex = adminsTable.getSelectedRow();
+
+        // validation
+        if(selectIndex == -1){
+            JOptionPane.showMessageDialog(null, "Select admin in table");   
+            return;
+        }   
+        
+        String active = defaultTableModel.getValueAt(selectIndex, 6).toString();
+        if(active.equals("Inactive")){
+            JOptionPane.showMessageDialog(null, "Already inactive");   
+            return;            
+        }
+        
+        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());    
+        
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+            pst = con.prepareStatement("UPDATE signup set active=? WHERE signup_id=?");
+            pst.setString(1, "0");   
+            pst.setInt(2, id);
+            
+            int result = JOptionPane.showConfirmDialog(null,"Want to deactivate?", "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+              JOptionPane.showMessageDialog(null, "Deactivate successfully");
+              pst.executeUpdate();
+              loadData();
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }        
+    }//GEN-LAST:event_deactivateBtnMouseClicked
 
     /**
      * @param args the command line arguments
