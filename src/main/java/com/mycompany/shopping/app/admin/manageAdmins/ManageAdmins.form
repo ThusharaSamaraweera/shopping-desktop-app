@@ -72,13 +72,10 @@
                               <Component id="addBtn" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="updateBtn" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="disableBtn" min="-2" pref="118" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="disableBtn" min="-2" pref="118" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -97,16 +94,13 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="addBtn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="updateBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="addBtn" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="disableBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="removeBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="504" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="499" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -315,7 +309,8 @@
             <Component class="javax.swing.JTable" name="adminsTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
+                  <Table columnCount="6" rowCount="4">
+                    <Column editable="false" title="ID" type="java.lang.Object"/>
                     <Column editable="false" title="First Name" type="java.lang.Object"/>
                     <Column editable="false" title="Last Name-" type="java.lang.Object"/>
                     <Column editable="false" title="Email" type="java.lang.Object"/>
@@ -325,12 +320,17 @@
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="155" prefWidth="-1" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="10" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="155" prefWidth="-1" resizable="true">
+                    <Column maxWidth="-1" minWidth="125" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="125" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -356,6 +356,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adminsTableMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -373,20 +376,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="disableBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="updateBtn">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="cc" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="UPDATE"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateBtnActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="removeBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -398,6 +387,7 @@
             <Property name="text" type="java.lang.String" value="REMOVE"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removeBtnMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeBtnActionPerformed"/>
           </Events>
         </Component>

@@ -61,7 +61,6 @@ public class ManageAdmins extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         adminsTable = new javax.swing.JTable();
         disableBtn = new javax.swing.JButton();
-        updateBtn = new javax.swing.JButton();
         removeBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
 
@@ -179,27 +178,34 @@ public class ManageAdmins extends javax.swing.JFrame {
 
         adminsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "Last Name-", "Email", "AddedAt", "Type"
+                "ID", "First Name", "Last Name-", "Email", "AddedAt", "Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        adminsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminsTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(adminsTable);
         if (adminsTable.getColumnModel().getColumnCount() > 0) {
-            adminsTable.getColumnModel().getColumn(0).setMinWidth(155);
-            adminsTable.getColumnModel().getColumn(1).setMinWidth(155);
+            adminsTable.getColumnModel().getColumn(0).setResizable(false);
+            adminsTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+            adminsTable.getColumnModel().getColumn(1).setMinWidth(125);
+            adminsTable.getColumnModel().getColumn(2).setMinWidth(125);
         }
 
         disableBtn.setBackground(new java.awt.Color(255, 204, 0));
@@ -211,18 +217,14 @@ public class ManageAdmins extends javax.swing.JFrame {
             }
         });
 
-        updateBtn.setBackground(new java.awt.Color(255, 204, 0));
-        updateBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        updateBtn.setText("UPDATE");
-        updateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtnActionPerformed(evt);
-            }
-        });
-
         removeBtn.setBackground(new java.awt.Color(255, 204, 0));
         removeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         removeBtn.setText("REMOVE");
+        removeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeBtnMouseClicked(evt);
+            }
+        });
         removeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeBtnActionPerformed(evt);
@@ -261,10 +263,8 @@ public class ManageAdmins extends javax.swing.JFrame {
                             .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                             .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(disableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(disableBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,14 +278,12 @@ public class ManageAdmins extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateBtn))
+                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(disableBtn)
                     .addComponent(removeBtn))
-                .addGap(0, 504, Short.MAX_VALUE))
+                .addGap(0, 499, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -311,10 +309,6 @@ public class ManageAdmins extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addBtnActionPerformed
-
-    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_updateBtnActionPerformed
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         // TODO add your handling code here:
@@ -373,6 +367,42 @@ public class ManageAdmins extends javax.swing.JFrame {
 
     }//GEN-LAST:event_addBtnMouseClicked
 
+    private void adminsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminsTableMouseClicked
+
+    }//GEN-LAST:event_adminsTableMouseClicked
+
+    private void removeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeBtnMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel)adminsTable.getModel();
+        int selectIndex = adminsTable.getSelectedRow();
+
+        // validation
+        if(selectIndex == -1){
+            JOptionPane.showMessageDialog(null, "Select admin in table");   
+            return;
+        }   
+ 
+        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());      
+
+        int result = JOptionPane.showConfirmDialog(null,"Want to delete?", "Warning",
+           JOptionPane.YES_NO_OPTION,
+           JOptionPane.QUESTION_MESSAGE);     
+        
+        if(result == JOptionPane.YES_OPTION){
+          try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+            pst = con.prepareStatement("DELETE from signup WHERE signup_id=?");
+            pst.setInt(1, id); 
+            
+            JOptionPane.showMessageDialog(null, "Category removed successfully");
+            pst.executeUpdate();
+            loadData();  
+             
+          } catch(SQLException e){
+              System.out.println(e);
+          }
+        }
+    }//GEN-LAST:event_removeBtnMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -410,7 +440,7 @@ public class ManageAdmins extends javax.swing.JFrame {
     }
     
     public void loadData(){
-        int noOfColums = 5;
+        int noOfColums = 6;
 
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
@@ -424,6 +454,7 @@ public class ManageAdmins extends javax.swing.JFrame {
             while(re.next()){
                 Vector vector = new Vector();
                 for(int i=1; i<=noOfColums; i++){
+                    vector.add(re.getString("signup_id"))
                     vector.add(re.getString("first_name"));
                     vector.add(re.getString("last_name"));
                     vector.add(re.getString("email"));
@@ -463,6 +494,5 @@ public class ManageAdmins extends javax.swing.JFrame {
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JButton removeBtn;
-    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }
