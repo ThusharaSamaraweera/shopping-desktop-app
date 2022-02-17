@@ -388,7 +388,9 @@ public class ManageAdmins extends javax.swing.JFrame {
             
             // hashing password
             String hash = HashPassword.hashPassword(generatedPassword);
-            System.out.println(HashPassword.isValidPassword(generatedPassword, hash));
+//            System.out.println(HashPassword.isValidPassword(generatedPassword, hash));
+
+            System.out.println(generatedPassword);
             
             pst.setString(1, firstName);
             pst.setString(2, lastName);
