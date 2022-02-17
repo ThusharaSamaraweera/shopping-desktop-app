@@ -15,9 +15,9 @@ import java.util.Properties;
  * @author THUSH
  */
 public class GmailSMTP {
-    public void sendEmail(String Email, String generatedPassword, String type){
-        System.out.println(Email);
-
+    public static void sendEmail(String Email, String generatedPassword, String type){
+        
+        // enter your email and password
         final String username = "";
         final String password = "";
         String fromEmail = username;

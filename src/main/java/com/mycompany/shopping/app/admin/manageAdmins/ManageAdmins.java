@@ -6,6 +6,7 @@ package com.mycompany.shopping.app.admin.manageAdmins;
 
 import com.mycompany.shopping.app.admin.Generator;
 import com.mycompany.shopping.app.admin.HashPassword;
+import com.mycompany.shopping.app.admin.emailSender.gmail.GmailSMTP;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -391,15 +392,14 @@ public class ManageAdmins extends javax.swing.JFrame {
 //            System.out.println(HashPassword.isValidPassword(generatedPassword, hash));
 
             System.out.println(generatedPassword);
+            GmailSMTP.sendEmail(email, generatedPassword, adminTypeString);
             
             pst.setString(1, firstName);
             pst.setString(2, lastName);
             pst.setString(3, email);
             pst.setString(4, hash);
             pst.setString(5, adminTypeShort);
-            
-
-            
+                        
             JOptionPane.showMessageDialog(null, "Added "+ adminTypeString +" successfully");
             pst.executeUpdate();
             loadData();
