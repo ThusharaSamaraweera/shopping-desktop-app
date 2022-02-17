@@ -4,6 +4,7 @@
  */
 package com.mycompany.shopping.app.admin;
 import java.security.NoSuchAlgorithmException;
+import java.security.MessageDigest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 
@@ -12,24 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
  * @author THUSH
  */
 public class HashPassword {
-//    	public static void main(String[] args) throws NoSuchAlgorithmException
-//	{
-//		String  originalPassword = "password";
-//		String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));
-//		System.out.println(generatedSecuredPasswordHash);
-//
-//		boolean matched = BCrypt.checkpw(originalPassword, generatedSecuredPasswordHash);
-//		System.out.println(matched);
-//	}
     
     public static String hashPassword(String originalPassword){
         String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));
         return generatedSecuredPasswordHash;
     }
     
-    public static boolean isValidPassword(String originalPassword, String hash){
-        
-        boolean matched = BCrypt.checkpw(originalPassword, hash);
+    public static boolean isValidPassword(String password, String hash){
+        boolean matched = BCrypt.checkpw(password, hash);
         return matched;      
     }
     

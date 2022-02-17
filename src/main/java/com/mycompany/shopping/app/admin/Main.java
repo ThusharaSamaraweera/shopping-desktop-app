@@ -10,12 +10,11 @@ package com.mycompany.shopping.app.admin;
  */
 public class Main {
     public static void main(String[] args) {
-       String hash = HashPassword.hashPassword("passwo");
+       String hash = HashPassword.hashPassword("passodd");
        System.out.println(hash);
        
-       String hash1 = HashPassword.hashPassword("passwoe");
-       System.out.println(hash1);
-       
-//       System.out.println(HashPassword.isValidPassword("passwor", "$2a$12$cXe.4aE8jfRGw29dRiy3i.yDRmLhk/ok39cp34DmGEITuLeh2/XFG"));
+       String hash3 = "";
+       String password = "passod";
+       System.out.println(HashPassword.isValidPassword(password, hash));
     }
 }
