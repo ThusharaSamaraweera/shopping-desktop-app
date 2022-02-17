@@ -18,7 +18,7 @@ public class GmailSMTP {
     public void sendEmail(String Email, String generatedPassword, String type){
         System.out.println(Email);
 
-        final String username = "thusharadasun204@gmail.com";
+        final String username = "";
         final String password = "";
         String fromEmail = username;
         String toEmail = Email;

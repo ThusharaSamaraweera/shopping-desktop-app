@@ -5,6 +5,7 @@
 package com.mycompany.shopping.app.admin.manageAdmins;
 
 import com.mycompany.shopping.app.admin.Generator;
+import com.mycompany.shopping.app.admin.HashPassword;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -65,7 +66,6 @@ public class ManageAdmins extends javax.swing.JFrame {
         removeBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
         deactivateBtn = new javax.swing.JButton();
-        generatedPasswordLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 700));
@@ -271,8 +271,6 @@ public class ManageAdmins extends javax.swing.JFrame {
             }
         });
 
-        generatedPasswordLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 51), null));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -290,13 +288,8 @@ public class ManageAdmins extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                             .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(activateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(361, 361, 361)
-                                .addComponent(generatedPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(43, 43, 43)
+                        .addComponent(activateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -319,13 +312,8 @@ public class ManageAdmins extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(activateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(removeBtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(generatedPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(removeBtn)
                 .addGap(0, 501, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -396,12 +384,16 @@ public class ManageAdmins extends javax.swing.JFrame {
             pst = con.prepareStatement("INSERT INTO signup(first_name, last_name,email, password, user_type) VALUES (?,?,?,?,?)");
 
             // Generate password
-            generatedPasswordLabel.setText(Generator.generateString(8));        
-
+            String generatedPassword = Generator.generateString(8);
+            
+            // hashing password
+            String hash = HashPassword.hashPassword(generatedPassword);
+            System.out.println(HashPassword.isValidPassword(generatedPassword, hash));
+            
             pst.setString(1, firstName);
             pst.setString(2, lastName);
             pst.setString(3, email);
-            pst.setString(4, "12345");
+            pst.setString(4, hash);
             pst.setString(5, adminTypeShort);
             
 
@@ -629,7 +621,6 @@ public class ManageAdmins extends javax.swing.JFrame {
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JPanel form;
-    private javax.swing.JLabel generatedPasswordLabel;
     private javax.swing.JPanel header;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

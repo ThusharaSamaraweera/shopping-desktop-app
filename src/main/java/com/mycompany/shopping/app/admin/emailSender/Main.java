@@ -13,7 +13,7 @@ import com.mycompany.shopping.app.admin.emailSender.gmail.GmailSMTP;
 public class Main {
     public static void main(String[] args) {
         GmailSMTP gmailSMTP = new GmailSMTP();
-        String email = "thusharamalinda204@gmail.com";
+        String email = "";
         String generatedPassword = "1234";
         gmailSMTP.sendEmail(email, generatedPassword, "Super admin");
     }
