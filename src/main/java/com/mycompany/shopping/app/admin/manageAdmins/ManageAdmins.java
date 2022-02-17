@@ -394,15 +394,17 @@ public class ManageAdmins extends javax.swing.JFrame {
         try {            
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             pst = con.prepareStatement("INSERT INTO signup(first_name, last_name,email, password, user_type) VALUES (?,?,?,?,?)");
-        
+
+            // Generate password
+            generatedPasswordLabel.setText(Generator.generateString(8));        
+
             pst.setString(1, firstName);
             pst.setString(2, lastName);
             pst.setString(3, email);
             pst.setString(4, "12345");
             pst.setString(5, adminTypeShort);
             
-            // Generate password
-            generatedPasswordLabel.setText(Generator.generateString(12));
+
             
             JOptionPane.showMessageDialog(null, "Added "+ adminTypeString +" successfully");
             pst.executeUpdate();
