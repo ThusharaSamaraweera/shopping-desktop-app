@@ -6,6 +6,7 @@
 package com.mycompany.shopping.app.admin.manageProduct;
 
 import com.mycompany.shopping.app.admin.dashboard.Dashboard;
+import com.mycompany.shopping.app.repository.SqlDataRepository;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -631,8 +632,9 @@ public class ManageProduct extends javax.swing.JFrame {
     public void SelectProducts(){
         int c;
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("select * from items");
+            SqlDataRepository db = new SqlDataRepository();
+            // Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = db.Con.prepareStatement("select * from items");
             Rs = add.executeQuery();
             
             ResultSetMetaData Rsd = Rs.getMetaData();
@@ -663,7 +665,7 @@ public class ManageProduct extends javax.swing.JFrame {
                 d.addRow(v);
             }
             
-            Con.close();
+            db.Con.close();
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -672,8 +674,9 @@ public class ManageProduct extends javax.swing.JFrame {
     int row;
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("insert into items(main_cat, cat_name, name, qty_s, qty_m, qty_l, price_s, price_m, price_l, img1, img2, img3, `desc`) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            SqlDataRepository db = new SqlDataRepository();
+            //Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = db.Con.prepareStatement("insert into items(main_cat, cat_name, name, qty_s, qty_m, qty_l, price_s, price_m, price_l, img1, img2, img3, `desc`) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             
             add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
             add.setString(2,SubCategoryComboBox.getSelectedItem().toString());
@@ -691,7 +694,7 @@ public class ManageProduct extends javax.swing.JFrame {
             
             row = add.executeUpdate();
             JOptionPane.showMessageDialog(this,"Product Successfully Added");
-            Con.close();
+            db.Con.close();
             SelectProducts();
         }catch(SQLException e){
             e.printStackTrace();
@@ -709,8 +712,9 @@ public class ManageProduct extends javax.swing.JFrame {
         
         if(dialogResult == JOptionPane.YES_OPTION){
             try{
-                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-                add = Con.prepareStatement("delete from items where item_id =?"); 
+                SqlDataRepository db = new SqlDataRepository();
+                //Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                add = db.Con.prepareStatement("delete from items where item_id =?"); 
                 add.setInt(1, ProductID);
                 
                 ProductNameTextfield.setText("");
@@ -729,7 +733,7 @@ public class ManageProduct extends javax.swing.JFrame {
                 
                 row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Product Successfully Deleted");
-                Con.close();
+                db.Con.close();
             SelectProducts();
             }catch(SQLException e){
                 e.printStackTrace();
@@ -767,8 +771,9 @@ public class ManageProduct extends javax.swing.JFrame {
         
         ProductID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("update items set main_cat=?, cat_name=?, name=?, qty_s=?, qty_m=?, qty_l=?, price_s=?, price_m=?, price_l=?, img1=?, img2=?, img3=?, `desc`=? where item_id ="+ProductID);
+            SqlDataRepository db = new SqlDataRepository();
+            //Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            add = db.Con.prepareStatement("update items set main_cat=?, cat_name=?, name=?, qty_s=?, qty_m=?, qty_l=?, price_s=?, price_m=?, price_l=?, img1=?, img2=?, img3=?, `desc`=? where item_id ="+ProductID);
             
             add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
             add.setString(2,SubCategoryComboBox.getSelectedItem().toString());
@@ -786,7 +791,7 @@ public class ManageProduct extends javax.swing.JFrame {
             
             row = add.executeUpdate();
             JOptionPane.showMessageDialog(this,"Product Successfully Updated");
-            Con.close();
+            db.Con.close();
             SelectProducts();
         }catch(SQLException e){
             e.printStackTrace();
