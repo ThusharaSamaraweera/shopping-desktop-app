@@ -49,9 +49,6 @@ public class ManageAdmins extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        header = new javax.swing.JPanel();
-        MainTitle = new javax.swing.JLabel();
-        SubTitle = new javax.swing.JLabel();
         form = new javax.swing.JPanel();
         firstNameLabel = new javax.swing.JLabel();
         firstNameTextField = new javax.swing.JTextField();
@@ -61,54 +58,26 @@ public class ManageAdmins extends javax.swing.JFrame {
         emailLabel = new javax.swing.JLabel();
         emailLabel1 = new javax.swing.JLabel();
         adminTypeDropdown = new javax.swing.JComboBox<>();
+        addBtn = new javax.swing.JButton();
+        removeBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         adminsTable = new javax.swing.JTable();
         activateBtn = new javax.swing.JButton();
-        removeBtn = new javax.swing.JButton();
-        addBtn = new javax.swing.JButton();
         deactivateBtn = new javax.swing.JButton();
+        MainTitle = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 700));
+        setMaximumSize(new java.awt.Dimension(1000, 750));
+        setMinimumSize(new java.awt.Dimension(1000, 750));
+        setPreferredSize(new java.awt.Dimension(1000, 750));
         setResizable(false);
+        setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 1000));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 700));
-
-        header.setBackground(new java.awt.Color(255, 204, 51));
-
-        MainTitle.setFont(new java.awt.Font("Bodoni MT Black", 1, 18)); // NOI18N
-        MainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MainTitle.setText("Manage Admins");
-
-        SubTitle.setFont(new java.awt.Font("Bodoni MT Black", 3, 24)); // NOI18N
-        SubTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SubTitle.setText("King's Men Textitle Shop");
-        SubTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
-        header.setLayout(headerLayout);
-        headerLayout.setHorizontalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(headerLayout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SubTitle)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                        .addComponent(MainTitle)
-                        .addGap(79, 79, 79)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        headerLayout.setVerticalGroup(
-            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(SubTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MainTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         form.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -133,6 +102,38 @@ public class ManageAdmins extends javax.swing.JFrame {
         adminTypeDropdown.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         adminTypeDropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Super Admin", "Admin" }));
 
+        addBtn.setBackground(new java.awt.Color(255, 204, 0));
+        addBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addBtn.setText("ADD");
+        addBtn.setBorder(null);
+        addBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addBtnMouseClicked(evt);
+            }
+        });
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
+
+        removeBtn.setBackground(new java.awt.Color(255, 204, 0));
+        removeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        removeBtn.setText("REMOVE");
+        removeBtn.setBorder(null);
+        removeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeBtnMouseClicked(evt);
+            }
+        });
+        removeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form);
         form.setLayout(formLayout);
         formLayout.setHorizontalGroup(
@@ -147,37 +148,47 @@ public class ManageAdmins extends javax.swing.JFrame {
                     .addGroup(formLayout.createSequentialGroup()
                         .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(lastNameTextField))
-                    .addGroup(formLayout.createSequentialGroup()
-                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailTextField)
-                            .addComponent(adminTypeDropdown, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addComponent(lastNameTextField)))
+                .addGap(42, 42, 42)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(emailTextField)
+                    .addComponent(adminTypeDropdown, 0, 183, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                .addContainerGap())
         );
         formLayout.setVerticalGroup(
             formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adminTypeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(formLayout.createSequentialGroup()
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(adminTypeDropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(formLayout.createSequentialGroup()
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(firstNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lastNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(formLayout.createSequentialGroup()
+                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         adminsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -219,6 +230,12 @@ public class ManageAdmins extends javax.swing.JFrame {
         activateBtn.setBackground(new java.awt.Color(255, 204, 0));
         activateBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         activateBtn.setText("ACTIVATE");
+        activateBtn.setBorder(null);
+        activateBtn.setBorderPainted(false);
+        activateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        activateBtn.setMaximumSize(new java.awt.Dimension(31, 17));
+        activateBtn.setMinimumSize(new java.awt.Dimension(31, 17));
+        activateBtn.setPreferredSize(new java.awt.Dimension(31, 17));
         activateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 activateBtnMouseClicked(evt);
@@ -230,37 +247,11 @@ public class ManageAdmins extends javax.swing.JFrame {
             }
         });
 
-        removeBtn.setBackground(new java.awt.Color(255, 204, 0));
-        removeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        removeBtn.setText("REMOVE");
-        removeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                removeBtnMouseClicked(evt);
-            }
-        });
-        removeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeBtnActionPerformed(evt);
-            }
-        });
-
-        addBtn.setBackground(new java.awt.Color(255, 204, 0));
-        addBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        addBtn.setText("ADD");
-        addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addBtnMouseClicked(evt);
-            }
-        });
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
-            }
-        });
-
         deactivateBtn.setBackground(new java.awt.Color(255, 204, 0));
         deactivateBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         deactivateBtn.setText("DEACTIVATE");
+        deactivateBtn.setBorder(null);
+        deactivateBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deactivateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 deactivateBtnMouseClicked(evt);
@@ -272,55 +263,68 @@ public class ManageAdmins extends javax.swing.JFrame {
             }
         });
 
+        MainTitle.setFont(new java.awt.Font("Bodoni MT Black", 1, 18)); // NOI18N
+        MainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MainTitle.setText("Manage Admins");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\Textile-shop-header3.jpg")); // NOI18N
+
+        jPanel3.setBackground(new java.awt.Color(255, 204, 51));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 86, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(466, 466, 466)
+                        .addComponent(MainTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(118, 118, 118)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1045, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                            .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(43, 43, 43)
-                        .addComponent(activateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(209, 209, 209)
-                    .addComponent(deactivateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(862, Short.MAX_VALUE)))
+                            .addComponent(activateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deactivateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(MainTitle)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(activateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(deactivateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(activateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(removeBtn)
-                .addGap(0, 501, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(471, 471, 471)
-                    .addComponent(deactivateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(494, Short.MAX_VALUE)))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -328,28 +332,98 @@ public class ManageAdmins extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1045, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void activateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateBtnActionPerformed
+    private void deactivateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deactivateBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_activateBtnActionPerformed
+    }//GEN-LAST:event_deactivateBtnActionPerformed
 
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addBtnActionPerformed
+    private void deactivateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deactivateBtnMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel)adminsTable.getModel();
+        int selectIndex = adminsTable.getSelectedRow();
+
+        // validation
+        if(selectIndex == -1){
+            JOptionPane.showMessageDialog(null, "Select admin in table");
+            return;
+        }
+
+        String active = defaultTableModel.getValueAt(selectIndex, 6).toString();
+        if(active.equals("Inactive")){
+            JOptionPane.showMessageDialog(null, "Already inactive");
+            return;
+        }
+
+        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());
+
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+            pst = con.prepareStatement("UPDATE signup set active=? WHERE signup_id=?");
+            pst.setString(1, "0");
+            pst.setInt(2, id);
+
+            int result = JOptionPane.showConfirmDialog(null,"Want to deactivate?", "Warning",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(null, "Deactivate successfully");
+                pst.executeUpdate();
+                loadData();
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_deactivateBtnMouseClicked
 
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_removeBtnActionPerformed
+
+    private void removeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeBtnMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel)adminsTable.getModel();
+        int selectIndex = adminsTable.getSelectedRow();
+
+        // validation
+        if(selectIndex == -1){
+            JOptionPane.showMessageDialog(null, "Select admin in table");
+            return;
+        }
+
+        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());
+
+        int result = JOptionPane.showConfirmDialog(null,"Want to delete?", "Warning",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE);
+
+        if(result == JOptionPane.YES_OPTION){
+            try {
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+                pst = con.prepareStatement("DELETE from signup WHERE signup_id=?");
+                pst.setInt(1, id);
+
+                JOptionPane.showMessageDialog(null, "Category removed successfully");
+                pst.executeUpdate();
+                loadData();
+
+            } catch(SQLException e){
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_removeBtnMouseClicked
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addBtnActionPerformed
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         String firstName = firstNameTextField .getText();
@@ -366,11 +440,11 @@ public class ManageAdmins extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter email");
             return;
         }
-       
+
         Object adminType = adminTypeDropdown.getSelectedItem();
         if(adminType == null){
             JOptionPane.showMessageDialog(null, "Select admin type");
-            return;            
+            return;
         }
         String adminTypeString = adminType.toString();
         String adminTypeShort = null;
@@ -379,81 +453,44 @@ public class ManageAdmins extends javax.swing.JFrame {
         }else if(adminTypeString.equals("Admin")){
             adminTypeShort = "A";
         }
-        
-        try {            
+
+        try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             pst = con.prepareStatement("INSERT INTO signup(first_name, last_name,email, password, user_type) VALUES (?,?,?,?,?)");
 
             // Generate password
             String generatedPassword = Generator.generateString(8);
-            
+
             // hashing password
             String hash = HashPassword.hashPassword(generatedPassword);
-//            System.out.println(HashPassword.isValidPassword(generatedPassword, hash));
+            //            System.out.println(HashPassword.isValidPassword(generatedPassword, hash));
 
             System.out.println(generatedPassword);
             GmailSMTP.sendEmail(email, generatedPassword, adminTypeString);
-            
+
             pst.setString(1, firstName);
             pst.setString(2, lastName);
             pst.setString(3, email);
             pst.setString(4, hash);
             pst.setString(5, adminTypeShort);
-                        
+
             JOptionPane.showMessageDialog(null, "Added "+ adminTypeString +" successfully");
             pst.executeUpdate();
             loadData();
-            
+
             adminTypeDropdown.setSelectedIndex(-1);
             firstNameTextField.setText("");
             lastNameTextField.setText("");
             emailTextField.setText("");
-            
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-
     }//GEN-LAST:event_addBtnMouseClicked
 
-    private void adminsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminsTableMouseClicked
-
-    }//GEN-LAST:event_adminsTableMouseClicked
-
-    private void removeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeBtnMouseClicked
-        DefaultTableModel defaultTableModel = (DefaultTableModel)adminsTable.getModel();
-        int selectIndex = adminsTable.getSelectedRow();
-
-        // validation
-        if(selectIndex == -1){
-            JOptionPane.showMessageDialog(null, "Select admin in table");   
-            return;
-        }   
- 
-        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());      
-
-        int result = JOptionPane.showConfirmDialog(null,"Want to delete?", "Warning",
-           JOptionPane.YES_NO_OPTION,
-           JOptionPane.QUESTION_MESSAGE);     
-        
-        if(result == JOptionPane.YES_OPTION){
-          try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
-            pst = con.prepareStatement("DELETE from signup WHERE signup_id=?");
-            pst.setInt(1, id); 
-            
-            JOptionPane.showMessageDialog(null, "Category removed successfully");
-            pst.executeUpdate();
-            loadData();  
-             
-          } catch(SQLException e){
-              System.out.println(e);
-          }
-        }
-    }//GEN-LAST:event_removeBtnMouseClicked
-
-    private void deactivateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deactivateBtnActionPerformed
+    private void activateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activateBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_deactivateBtnActionPerformed
+    }//GEN-LAST:event_activateBtnActionPerformed
 
     private void activateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activateBtnMouseClicked
         DefaultTableModel defaultTableModel = (DefaultTableModel)adminsTable.getModel();
@@ -461,75 +498,41 @@ public class ManageAdmins extends javax.swing.JFrame {
 
         // validation
         if(selectIndex == -1){
-            JOptionPane.showMessageDialog(null, "Select admin in table");   
+            JOptionPane.showMessageDialog(null, "Select admin in table");
             return;
-        }   
-        
+        }
+
         String active = defaultTableModel.getValueAt(selectIndex, 6).toString();
         if(active.equals("Active")){
-            JOptionPane.showMessageDialog(null, "Already active");   
-            return;            
+            JOptionPane.showMessageDialog(null, "Already active");
+            return;
         }
-        
-        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());    
-        
+
+        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());
+
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             pst = con.prepareStatement("UPDATE signup set active=? WHERE signup_id=?");
-            pst.setString(1, "1");   
+            pst.setString(1, "1");
             pst.setInt(2, id);
-            
+
             int result = JOptionPane.showConfirmDialog(null,"Want to activate?", "Warning",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
             if(result == JOptionPane.YES_OPTION){
-              JOptionPane.showMessageDialog(null, "Activate successfully");
-              pst.executeUpdate();
-              loadData();
+                JOptionPane.showMessageDialog(null, "Activate successfully");
+                pst.executeUpdate();
+                loadData();
             }
-            
+
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }//GEN-LAST:event_activateBtnMouseClicked
 
-    private void deactivateBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deactivateBtnMouseClicked
-        DefaultTableModel defaultTableModel = (DefaultTableModel)adminsTable.getModel();
-        int selectIndex = adminsTable.getSelectedRow();
+    private void adminsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminsTableMouseClicked
 
-        // validation
-        if(selectIndex == -1){
-            JOptionPane.showMessageDialog(null, "Select admin in table");   
-            return;
-        }   
-        
-        String active = defaultTableModel.getValueAt(selectIndex, 6).toString();
-        if(active.equals("Inactive")){
-            JOptionPane.showMessageDialog(null, "Already inactive");   
-            return;            
-        }
-        
-        int id = Integer.parseInt(defaultTableModel.getValueAt(selectIndex, 0).toString());    
-        
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
-            pst = con.prepareStatement("UPDATE signup set active=? WHERE signup_id=?");
-            pst.setString(1, "0");   
-            pst.setInt(2, id);
-            
-            int result = JOptionPane.showConfirmDialog(null,"Want to deactivate?", "Warning",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE);
-            if(result == JOptionPane.YES_OPTION){
-              JOptionPane.showMessageDialog(null, "Deactivate successfully");
-              pst.executeUpdate();
-              loadData();
-            }
-            
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }        
-    }//GEN-LAST:event_deactivateBtnMouseClicked
+    }//GEN-LAST:event_adminsTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -611,7 +614,6 @@ public class ManageAdmins extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MainTitle;
-    private javax.swing.JLabel SubTitle;
     private javax.swing.JButton activateBtn;
     private javax.swing.JButton addBtn;
     private javax.swing.JComboBox<String> adminTypeDropdown;
@@ -623,8 +625,9 @@ public class ManageAdmins extends javax.swing.JFrame {
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JPanel form;
-    private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JTextField lastNameTextField;
