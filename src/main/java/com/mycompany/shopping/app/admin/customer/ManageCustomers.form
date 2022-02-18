@@ -134,7 +134,7 @@
                         <Column editable="false" title="Phone number" type="java.lang.Integer"/>
                         <Column editable="false" title="Country" type="java.lang.String"/>
                         <Column editable="false" title="State" type="java.lang.String"/>
-                        <Column editable="true" title="Address" type="java.lang.String"/>
+                        <Column editable="false" title="Address" type="java.lang.String"/>
                         <Column editable="false" title="Postel code" type="java.lang.Integer"/>
                         <Column editable="false" title="Created data" type="java.lang.String"/>
                       </Table>
