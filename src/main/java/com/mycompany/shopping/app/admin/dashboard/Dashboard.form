@@ -38,7 +38,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="588" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="700" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -181,7 +181,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\Textile-shop-header3.jpg"/>
+                      <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\Textile-shop-header3.jpg"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -277,7 +277,7 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\product-icon.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\product-icon.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -387,7 +387,7 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\Category-icon.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\Category-icon.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Icon 3"/>
               </Properties>
@@ -409,6 +409,9 @@
               <Dimension value="[150, 150]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="userMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -473,7 +476,7 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\admin.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\admin.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -542,7 +545,7 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\customer-icon.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\customer-icon.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -650,7 +653,7 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\order.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\order.png"/>
                 </Property>
               </Properties>
             </Component>

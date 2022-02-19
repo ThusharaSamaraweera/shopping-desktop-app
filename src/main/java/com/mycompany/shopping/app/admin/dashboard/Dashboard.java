@@ -7,6 +7,7 @@ package com.mycompany.shopping.app.admin.dashboard;
 
 import com.mycompany.shopping.app.admin.customer.ManageCustomers;
 import com.mycompany.shopping.app.admin.login.Login;
+import com.mycompany.shopping.app.admin.manageAdmins.ManageAdmins;
 import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
 
 /**
@@ -69,7 +70,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 143));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\Textile-shop-header3.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\Textile-shop-header3.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -139,7 +140,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         productIcon.setBackground(new java.awt.Color(255, 255, 255));
         productIcon.setForeground(new java.awt.Color(255, 153, 51));
-        productIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\product-icon.png")); // NOI18N
+        productIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\product-icon.png")); // NOI18N
 
         productLabel.setEditable(false);
         productLabel.setBackground(new java.awt.Color(255, 204, 51));
@@ -205,7 +206,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         categoryIcon.setBackground(new java.awt.Color(255, 255, 255));
         categoryIcon.setForeground(new java.awt.Color(255, 153, 51));
-        categoryIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\Category-icon.png")); // NOI18N
+        categoryIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\Category-icon.png")); // NOI18N
         categoryIcon.setText("Icon 3");
 
         javax.swing.GroupLayout categoryLayout = new javax.swing.GroupLayout(category);
@@ -235,6 +236,11 @@ public class Dashboard extends javax.swing.JFrame {
         user.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         user.setMinimumSize(new java.awt.Dimension(159, 150));
         user.setPreferredSize(new java.awt.Dimension(150, 150));
+        user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                userMouseClicked(evt);
+            }
+        });
 
         userLabel.setBackground(new java.awt.Color(255, 204, 51));
         userLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -250,7 +256,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         userIcon.setBackground(new java.awt.Color(255, 255, 255));
         userIcon.setForeground(new java.awt.Color(255, 153, 51));
-        userIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\admin.png")); // NOI18N
+        userIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\admin.png")); // NOI18N
 
         javax.swing.GroupLayout userLayout = new javax.swing.GroupLayout(user);
         user.setLayout(userLayout);
@@ -288,7 +294,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         customerIcon.setBackground(new java.awt.Color(255, 255, 255));
         customerIcon.setForeground(new java.awt.Color(255, 153, 51));
-        customerIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\customer-icon.png")); // NOI18N
+        customerIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\customer-icon.png")); // NOI18N
 
         customerLabel.setBackground(new java.awt.Color(255, 204, 51));
         customerLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -353,7 +359,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         orderIcon.setBackground(new java.awt.Color(255, 255, 255));
         orderIcon.setForeground(new java.awt.Color(255, 153, 51));
-        orderIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\order.png")); // NOI18N
+        orderIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\order.png")); // NOI18N
 
         javax.swing.GroupLayout ordersLayout = new javax.swing.GroupLayout(orders);
         orders.setLayout(ordersLayout);
@@ -438,7 +444,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
 
         pack();
@@ -496,6 +502,11 @@ public class Dashboard extends javax.swing.JFrame {
         new Login().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logoutBtnMouseClicked
+
+    private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
+        new ManageAdmins().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_userMouseClicked
 
     /**
      * @param args the command line arguments
