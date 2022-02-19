@@ -267,7 +267,7 @@ public class ManageAdmins extends javax.swing.JFrame {
         MainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MainTitle.setText("Manage Admins");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\Textile-shop-header3.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\Textile-shop-header4.jpg")); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 51));
 
