@@ -378,9 +378,16 @@ public class ManageProduct extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         ProductInfoTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -389,6 +396,32 @@ public class ManageProduct extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(ProductInfoTable);
+        if (ProductInfoTable.getColumnModel().getColumnCount() > 0) {
+            ProductInfoTable.getColumnModel().getColumn(0).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(0).setPreferredWidth(130);
+            ProductInfoTable.getColumnModel().getColumn(1).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            ProductInfoTable.getColumnModel().getColumn(2).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+            ProductInfoTable.getColumnModel().getColumn(3).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(3).setPreferredWidth(200);
+            ProductInfoTable.getColumnModel().getColumn(4).setPreferredWidth(250);
+            ProductInfoTable.getColumnModel().getColumn(5).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(5).setPreferredWidth(150);
+            ProductInfoTable.getColumnModel().getColumn(6).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(6).setPreferredWidth(150);
+            ProductInfoTable.getColumnModel().getColumn(7).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(7).setPreferredWidth(150);
+            ProductInfoTable.getColumnModel().getColumn(8).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(8).setPreferredWidth(150);
+            ProductInfoTable.getColumnModel().getColumn(9).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(9).setPreferredWidth(150);
+            ProductInfoTable.getColumnModel().getColumn(10).setResizable(false);
+            ProductInfoTable.getColumnModel().getColumn(10).setPreferredWidth(150);
+            ProductInfoTable.getColumnModel().getColumn(11).setPreferredWidth(250);
+            ProductInfoTable.getColumnModel().getColumn(12).setPreferredWidth(250);
+            ProductInfoTable.getColumnModel().getColumn(13).setPreferredWidth(250);
+        }
 
         jScrollPane3.setViewportView(jScrollPane1);
 
