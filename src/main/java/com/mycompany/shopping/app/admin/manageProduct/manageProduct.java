@@ -5,7 +5,7 @@
  */
 package com.mycompany.shopping.app.admin.manageProduct;
 
-import com.mycompany.shopping.app.admin.dashboard.Dashboard;
+import com.mycompany.shopping.app.admin.dashboard.SuperAdminDashboard;
 import java.awt.Image;
 import java.io.File;
 import java.sql.Statement;
@@ -852,7 +852,7 @@ public class ManageProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_EditBtnMouseClicked
 
     private void HomeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeBtnMouseClicked
-        new Dashboard().setVisible(true);
+        new SuperAdminDashboard().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HomeBtnMouseClicked
 

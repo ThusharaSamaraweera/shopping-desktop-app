@@ -5,7 +5,8 @@
 package com.mycompany.shopping.app.admin.login;
 
 import com.mycompany.shopping.app.admin.HashPassword;
-import com.mycompany.shopping.app.admin.dashboard.Dashboard;
+import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
+import com.mycompany.shopping.app.admin.dashboard.SuperAdminDashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -223,7 +224,7 @@ public class Login extends javax.swing.JFrame {
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
         Statement st = null;
         ResultSet rs = null;
-        String query = "SELECT password FROM signup WHERE email='"+emailTextfield.getText()+"'";
+        String query = "SELECT password, user_type FROM signup WHERE email='"+emailTextfield.getText()+"'";
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             st = con.createStatement();
@@ -241,8 +242,13 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Enter your password");
                 return;
             } else if(HashPassword.isValidPassword(password, rs.getString("password"))){
-                new Dashboard().setVisible(true);
-                this.dispose();
+                if(rs.getString("user_type").equals("SA")){
+                    new SuperAdminDashboard().setVisible(true);
+                    this.dispose();                    
+                }else if(rs.getString("user_type").equals("A")) {
+                    new AdminDashboard().setVisible(true);
+                    this.dispose();
+                }
             }else {
                 JOptionPane.showMessageDialog(this, "Password is not valid.");
                 return;
