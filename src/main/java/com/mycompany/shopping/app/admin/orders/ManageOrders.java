@@ -4,7 +4,7 @@
  */
 package com.mycompany.shopping.app.admin.orders;
 
-import com.mycompany.shopping.app.admin.dashboard.Dashboard;
+import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -586,7 +586,7 @@ public class ManageOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteOrderBtnActionPerformed
 
     private void HomeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeBtnMouseClicked
-        new Dashboard().setVisible(true);
+        new AdminDashboard().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HomeBtnMouseClicked
 

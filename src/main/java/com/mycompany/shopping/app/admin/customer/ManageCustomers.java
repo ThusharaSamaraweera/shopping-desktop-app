@@ -4,7 +4,7 @@
  */
 package com.mycompany.shopping.app.admin.customer;
 
-import com.mycompany.shopping.app.admin.dashboard.Dashboard;
+import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
 import com.mycompany.shopping.app.admin.login.Login;
 import java.sql.*;
 import java.util.Vector;
@@ -211,7 +211,7 @@ public class ManageCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_BackActionPerformed
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-        new Dashboard().setVisible(true);
+        new AdminDashboard().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
 

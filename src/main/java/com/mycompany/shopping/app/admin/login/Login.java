@@ -5,7 +5,7 @@
 package com.mycompany.shopping.app.admin.login;
 
 import com.mycompany.shopping.app.admin.HashPassword;
-import com.mycompany.shopping.app.admin.dashboard.Dashboard;
+import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -243,7 +243,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Enter your password");
                 return;
             } else if(HashPassword.isValidPassword(password, rs.getString("password"))){
-                new Dashboard().setVisible(true);
+                new AdminDashboard().setVisible(true);
                 this.dispose();
             }else {
                 JOptionPane.showMessageDialog(this, "Password is not valid.");
