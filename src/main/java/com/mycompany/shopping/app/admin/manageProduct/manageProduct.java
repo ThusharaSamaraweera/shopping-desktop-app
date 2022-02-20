@@ -770,6 +770,7 @@ public class ManageProduct extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_HomeBtnMouseClicked
 
+    
     private void Img1BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Img1BtnMouseClicked
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
@@ -779,25 +780,26 @@ public class ManageProduct extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(fileName);
         Image image = icon.getImage().getScaledInstance(Img1Loader.getWidth(), Img1Loader.getHeight(), Image.SCALE_SMOOTH);
         Img1Loader.setIcon(icon);
+        System.out.println(fileName);
         
         DefaultTableModel model = (DefaultTableModel)ProductInfoTable.getModel();
         int Myindex = ProductInfoTable.getSelectedRow();
         
         ProductID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
-        if(!(ProductID.equals(""))){
-                    try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("update items set img1=? where item_id ="+ProductID);
-            
-            add.setString(1, fileName);
-            
-            row = add.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Product Successfully Updated");
-            Con.close();
-            SelectProducts();
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
+        if(!(ProductID == null)){
+                try{
+                    Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                    add = Con.prepareStatement("update items set img1=? where item_id ="+ProductID);
+
+                    add.setString(1, fileName);
+
+                    row = add.executeUpdate();
+                    JOptionPane.showMessageDialog(this,"Product Successfully Updated");
+                    Con.close();
+                    SelectProducts();
+                }catch(SQLException e){
+                    e.printStackTrace();
+                }
         }
         
     }//GEN-LAST:event_Img1BtnMouseClicked
