@@ -98,7 +98,7 @@ public class ManageProduct extends javax.swing.JFrame {
         jPanel6.setOpaque(false);
         jPanel6.setPreferredSize(new java.awt.Dimension(1000, 143));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL inspiron\\Documents\\University Java Project OOP\\Java Web\\shopping-desktop-app\\asserts\\images\\Textile-shop-header4.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\Textile-shop-header4.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -677,7 +677,7 @@ public class ManageProduct extends javax.swing.JFrame {
     public void SelectProducts(){
         int c;
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
             add = Con.prepareStatement("select * from items");
             Rs = add.executeQuery();
             
@@ -717,7 +717,7 @@ public class ManageProduct extends javax.swing.JFrame {
     
     private void GetCategory(){
                 try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
             St = Con.createStatement();
             String query = "select * from category";
             Rs = St.executeQuery(query);
@@ -737,7 +737,7 @@ public class ManageProduct extends javax.swing.JFrame {
     int row;
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
             add = Con.prepareStatement("insert into items(main_cat, cat_name, name, qty_s, qty_m, qty_l, price_s, price_m, price_l, img1, img2, img3, `desc`) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             
             add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
@@ -771,7 +771,7 @@ public class ManageProduct extends javax.swing.JFrame {
         
         if(dialogResult == JOptionPane.YES_OPTION){
             try{
-                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
                 add = Con.prepareStatement("delete from items where item_id =?"); 
                 add.setInt(1, ProductID);
                 
@@ -823,7 +823,7 @@ public class ManageProduct extends javax.swing.JFrame {
         
         ProductID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
             add = Con.prepareStatement("update items set main_cat=?, cat_name=?, name=?, qty_s=?, qty_m=?, qty_l=?, price_s=?, price_m=?, price_l=?, `desc`=? where item_id ="+ProductID);
             
             add.setString(1,MainCategoryComboBox.getSelectedItem().toString());
@@ -875,7 +875,7 @@ public class ManageProduct extends javax.swing.JFrame {
             Img1Loader.setIcon(icon);
             
                 try{
-                    Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                    Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
                     add = Con.prepareStatement("update items set img1=? where item_id ="+ProductID);
 
                     add.setString(1, fileName);
@@ -915,7 +915,7 @@ public class ManageProduct extends javax.swing.JFrame {
         ProductID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
         if(!(ProductID == 0)){
                 try{
-                    Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                    Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
                     add = Con.prepareStatement("update items set img2=? where item_id ="+ProductID);
 
                     add.setString(1, fileName);
@@ -955,7 +955,7 @@ public class ManageProduct extends javax.swing.JFrame {
         ProductID = Integer.parseInt(model.getValueAt(Myindex, 0).toString());
         if(!(ProductID == 0)){
                 try{
-                    Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
+                    Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","thu$hara#16");
                     add = Con.prepareStatement("update items set img3=? where item_id ="+ProductID);
 
                     add.setString(1, fileName);
