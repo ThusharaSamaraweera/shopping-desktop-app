@@ -162,7 +162,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\Textile-shop-header4.jpg"/>
+                      <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\src\main\java\com\mycompany\shopping\app\asserts\images\Textile-shop-header4.jpg"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -233,7 +233,7 @@
                           </Group>
                           <Component id="productIcon" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -258,9 +258,12 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\product-icon.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\src\main\java\com\mycompany\shopping\app\asserts\images\customer-icon.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="productIconMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="productLabel">
               <Properties>
@@ -368,9 +371,8 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\Category-icon.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\src\main\java\com\mycompany\shopping\app\asserts\images\Category-icon.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Icon 3"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -438,7 +440,7 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\customer-icon.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\src\main\java\com\mycompany\shopping\app\asserts\images\customer-icon.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -546,7 +548,7 @@
                   <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\order.png"/>
+                  <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\src\main\java\com\mycompany\shopping\app\asserts\images\order.png"/>
                 </Property>
               </Properties>
             </Component>

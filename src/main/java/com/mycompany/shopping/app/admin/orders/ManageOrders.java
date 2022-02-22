@@ -5,8 +5,7 @@
 package com.mycompany.shopping.app.admin.orders;
 
 import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import com.mycompany.shopping.app.dbConnection.SqlConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -85,7 +84,6 @@ public class ManageOrders extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1400, 750));
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
-        setResizable(false);
 
         header.setBackground(new java.awt.Color(255, 204, 51));
         header.setMaximumSize(new java.awt.Dimension(1000, 750));
@@ -95,7 +93,7 @@ public class ManageOrders extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 143));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL inspiron\\Documents\\University Java Project OOP\\Java Web\\shopping-desktop-app\\asserts\\images\\Textile-shop-header4.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\Textile-shop-header4.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -130,6 +128,7 @@ public class ManageOrders extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        body.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         body.setMaximumSize(new java.awt.Dimension(1000, 32767));
         body.setPreferredSize(new java.awt.Dimension(1000, 514));
 
@@ -288,9 +287,9 @@ public class ManageOrders extends javax.swing.JFrame {
         Email.setText("Email");
 
         HomeBtn.setBackground(new java.awt.Color(255, 204, 51));
-        HomeBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        HomeBtn.setForeground(new java.awt.Color(102, 102, 102));
-        HomeBtn.setText("Home");
+        HomeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        HomeBtn.setText("BACK");
+        HomeBtn.setBorder(null);
         HomeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 HomeBtnMouseClicked(evt);
@@ -306,9 +305,9 @@ public class ManageOrders extends javax.swing.JFrame {
         });
 
         DeleteOrderBtn.setBackground(new java.awt.Color(255, 204, 51));
-        DeleteOrderBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        DeleteOrderBtn.setForeground(new java.awt.Color(102, 102, 102));
+        DeleteOrderBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         DeleteOrderBtn.setText("Delete Order");
+        DeleteOrderBtn.setBorder(null);
         DeleteOrderBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DeleteOrderBtnMouseClicked(evt);
@@ -321,9 +320,9 @@ public class ManageOrders extends javax.swing.JFrame {
         });
 
         SetStateBtn.setBackground(new java.awt.Color(255, 204, 51));
-        SetStateBtn.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        SetStateBtn.setForeground(new java.awt.Color(102, 102, 102));
+        SetStateBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         SetStateBtn.setText("Set State");
+        SetStateBtn.setBorder(null);
         SetStateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 SetStateBtnMouseClicked(evt);
@@ -338,7 +337,7 @@ public class ManageOrders extends javax.swing.JFrame {
         LastName1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         LastName1.setText("State");
 
-        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "State", "Pending", "Received" }));
+        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select State", "Pending", "Accepted" }));
         StateComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 StateComboBoxMouseClicked(evt);
@@ -413,11 +412,11 @@ public class ManageOrders extends javax.swing.JFrame {
                     .addComponent(ProductList, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(bodyLayout.createSequentialGroup()
                         .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(46, 46, 46)
                         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(DeleteOrderBtn)
-                            .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(127, Short.MAX_VALUE))
+                            .addComponent(DeleteOrderBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -487,10 +486,10 @@ public class ManageOrders extends javax.swing.JFrame {
                         .addComponent(ProductListScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
-                        .addComponent(DeleteOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DeleteOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102))))
+                        .addGap(101, 101, 101))))
         );
 
         footer.setBackground(new java.awt.Color(255, 204, 51));
@@ -556,8 +555,8 @@ public class ManageOrders extends javax.swing.JFrame {
         
         int c;
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("SELECT item_id, main_cat, cat_name, s_qty, price_s, m_qty, price_m, l_qty, price_l FROM textile_shop.order WHERE order_customer_id ="+customerID);
+            SqlConnection sqlConnection = new SqlConnection();        
+            add = sqlConnection.con.prepareStatement("SELECT item_id, main_cat, cat_name, s_qty, price_s, m_qty, price_m, l_qty, price_l FROM textile_shop.order WHERE order_customer_id ="+customerID);
             Rs = add.executeQuery();
             
             ResultSetMetaData Rsd = Rs.getMetaData();
@@ -584,13 +583,10 @@ public class ManageOrders extends javax.swing.JFrame {
             }
             
             setTextFields(customerID);
-            Con.close();
         }catch(SQLException e){
             e.printStackTrace();
         }
-        
-        
-        
+               
     }//GEN-LAST:event_OrdersTableMouseClicked
 
     private void StateComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StateComboBox1MouseClicked
@@ -608,13 +604,12 @@ public class ManageOrders extends javax.swing.JFrame {
         
         if(!(StateComboBox.getSelectedItem().equals(OrderState))){    
             try{
-                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-                add = Con.prepareStatement("UPDATE textile_shop.order SET state=? WHERE id="+OrderID);
+                SqlConnection sqlConnection = new SqlConnection();
+                add = sqlConnection.con.prepareStatement("UPDATE textile_shop.order SET state=? WHERE id="+OrderID);
                 add.setString(1,StateComboBox.getSelectedItem().toString());
 
                 row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this,"State Successfully Updated");
-                Con.close();
                 SelectOrders();
             }catch(SQLException e){
                 e.printStackTrace();
@@ -640,8 +635,8 @@ public class ManageOrders extends javax.swing.JFrame {
         
         if(dialogResult == JOptionPane.YES_OPTION){
             try{
-                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-                add = Con.prepareStatement("DELETE FROM textile_shop.order WHERE id =?"); 
+                SqlConnection sqlConnection = new SqlConnection();
+                add = sqlConnection.con.prepareStatement("DELETE FROM textile_shop.order WHERE id =?"); 
                 add.setInt(1, OrderID);
                 
                 FirstNameTextField.setText("");
@@ -657,7 +652,6 @@ public class ManageOrders extends javax.swing.JFrame {
                 
                 row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Order Successfully Deleted");
-                Con.close();
                 SelectOrders();
             }catch(SQLException e){
                 e.printStackTrace();
@@ -689,8 +683,8 @@ public class ManageOrders extends javax.swing.JFrame {
             int c;
             String s = StateComboBox1.getSelectedItem().toString();
             try{
-                Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-                add = Con.prepareStatement("SELECT id, order_customer_id, createdAt, state FROM textile_shop.order WHERE state=?");
+                SqlConnection sqlConnection = new SqlConnection();
+                add = sqlConnection.con.prepareStatement("SELECT id, order_customer_id, createdAt, state FROM textile_shop.order WHERE state=?");
                 add.setString(1, s);
                 Rs = add.executeQuery();
 
@@ -713,7 +707,6 @@ public class ManageOrders extends javax.swing.JFrame {
                     d.addRow(v);
                 }
 
-                Con.close();
             }catch(SQLException e){
                 e.printStackTrace();
             }
@@ -744,8 +737,8 @@ public class ManageOrders extends javax.swing.JFrame {
 
     public void setTextFields(int customerID){
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("SELECT first_name, last_name, phone_number, email, address_line_1, address_line_2, state, country, postel_code FROM textile_shop.order_customer WHERE signup_id ="+customerID);
+            SqlConnection sqlConnection = new SqlConnection();
+            add = sqlConnection.con.prepareStatement("SELECT first_name, last_name, phone_number, email, address_line_1, address_line_2, state, country, postel_code FROM textile_shop.order_customer WHERE signup_id ="+customerID);
             Rs = add.executeQuery();
             
             if(Rs.next()){
@@ -759,7 +752,6 @@ public class ManageOrders extends javax.swing.JFrame {
                 CountryTextField.setText(Rs.getString("country"));
                 PostelCodeTextField.setText(Rs.getString("postel_code"));
             }
-            Con.close();
             
             DefaultTableModel model = (DefaultTableModel)OrdersTable.getModel();
             int Myindex = OrdersTable.getSelectedRow();
@@ -775,7 +767,6 @@ public class ManageOrders extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-    Connection Con = null;
     Statement St = null;
     ResultSet Rs = null;
     PreparedStatement add = null;
@@ -783,8 +774,9 @@ public class ManageOrders extends javax.swing.JFrame {
     public void SelectOrders(){
         int c;
         try{
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
-            add = Con.prepareStatement("SELECT id, order_customer_id, createdAt, state FROM textile_shop.order;");
+
+            SqlConnection sqlConnection =  new SqlConnection();
+            add = sqlConnection.con.prepareStatement("SELECT id, order_customer_id, createdAt, state FROM textile_shop.order");
             Rs = add.executeQuery();
             
             ResultSetMetaData Rsd = Rs.getMetaData();
@@ -806,7 +798,6 @@ public class ManageOrders extends javax.swing.JFrame {
                 d.addRow(v);
             }
             
-            Con.close();
         }catch(SQLException e){
             e.printStackTrace();
         }
