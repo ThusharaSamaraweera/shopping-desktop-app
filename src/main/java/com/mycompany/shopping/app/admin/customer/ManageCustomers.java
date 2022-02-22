@@ -203,7 +203,7 @@ public class ManageCustomers extends javax.swing.JFrame {
         int noOfRow = 1;
         try{
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop","root","#19KKas99@%");
             st = con.createStatement();
             String qu = "SELECT * FROM signup";
             re = st.executeQuery(qu);          
