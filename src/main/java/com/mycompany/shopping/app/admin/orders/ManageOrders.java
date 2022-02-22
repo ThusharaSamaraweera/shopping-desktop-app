@@ -81,6 +81,7 @@ public class ManageOrders extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1400, 750));
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
@@ -128,6 +129,7 @@ public class ManageOrders extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        body.setBackground(new java.awt.Color(255, 255, 255));
         body.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         body.setMaximumSize(new java.awt.Dimension(1000, 32767));
         body.setPreferredSize(new java.awt.Dimension(1000, 514));

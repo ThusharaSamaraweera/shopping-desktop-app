@@ -7,8 +7,8 @@ package com.mycompany.shopping.app.admin.login;
 import com.mycompany.shopping.app.admin.HashPassword;
 import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
 import com.mycompany.shopping.app.admin.dashboard.SuperAdminDashboard;
+import com.mycompany.shopping.app.dbConnection.SqlConnection;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -57,6 +57,8 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 0));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\Textile-shop-header1.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -226,8 +228,8 @@ public class Login extends javax.swing.JFrame {
         ResultSet rs = null;
         String query = "SELECT password, user_type FROM signup WHERE email='"+emailTextfield.getText()+"'";
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
-            st = con.createStatement();
+            SqlConnection sqlConnection = new SqlConnection();
+            st = sqlConnection.con.createStatement();
             rs = st.executeQuery(query);
             
             String password = passwordTextfield.getText();
