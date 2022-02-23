@@ -226,7 +226,7 @@ public class Login extends javax.swing.JFrame {
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
         Statement st = null;
         ResultSet rs = null;
-        String query = "SELECT password, user_type FROM signup WHERE email='"+emailTextfield.getText()+"'";
+        String query = "SELECT password, user_type FROM signup WHERE email='"+emailTextfield.getText()+"'and user_type!='C' ";
         try{
             SqlConnection sqlConnection = new SqlConnection();
             st = sqlConnection.con.createStatement();

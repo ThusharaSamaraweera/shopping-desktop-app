@@ -7,6 +7,7 @@ package com.mycompany.shopping.app.admin.dashboard;
 
 import com.mycompany.shopping.app.admin.customer.ManageCustomers;
 import com.mycompany.shopping.app.admin.login.Login;
+import com.mycompany.shopping.app.admin.manageCategory.ManageCategory;
 import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
 import com.mycompany.shopping.app.admin.orders.ManageOrders;
 
@@ -201,6 +202,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         categoryLabel.setText("CATEGORY");
         categoryLabel.setBorder(null);
         categoryLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        categoryLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        categoryLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoryLabelMouseClicked(evt);
+            }
+        });
         categoryLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryLabelActionPerformed(evt);
@@ -210,6 +217,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         categoryIcon.setBackground(new java.awt.Color(255, 255, 255));
         categoryIcon.setForeground(new java.awt.Color(255, 153, 51));
         categoryIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\Category-icon.png")); // NOI18N
+        categoryIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoryIconMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout categoryLayout = new javax.swing.GroupLayout(category);
         category.setLayout(categoryLayout);
@@ -247,6 +259,12 @@ public class AdminDashboard extends javax.swing.JFrame {
         customerIcon.setBackground(new java.awt.Color(255, 255, 255));
         customerIcon.setForeground(new java.awt.Color(255, 153, 51));
         customerIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\customer-icon.png")); // NOI18N
+        customerIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        customerIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerIconMouseClicked(evt);
+            }
+        });
 
         customerLabel.setBackground(new java.awt.Color(255, 204, 51));
         customerLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -254,6 +272,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         customerLabel.setText("CUSTOMER");
         customerLabel.setBorder(null);
         customerLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        customerLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         customerLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 customerLabelMouseClicked(evt);
@@ -296,12 +315,23 @@ public class AdminDashboard extends javax.swing.JFrame {
         orders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         orders.setMinimumSize(new java.awt.Dimension(159, 150));
         orders.setPreferredSize(new java.awt.Dimension(150, 150));
+        orders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ordersMouseClicked(evt);
+            }
+        });
 
         orderLabel.setBackground(new java.awt.Color(255, 204, 51));
         orderLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         orderLabel.setText("ORDER");
         orderLabel.setBorder(null);
         orderLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        orderLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        orderLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderLabelMouseClicked(evt);
+            }
+        });
         orderLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderLabelActionPerformed(evt);
@@ -415,7 +445,8 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_customerLabelMouseClicked
 
     private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
-
+        new ManageCategory(user_type).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_categoryMouseClicked
 
     private void categoryLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryLabelActionPerformed
@@ -447,11 +478,38 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void productIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productIconMouseClicked
         new ManageProduct(user_type).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_productIconMouseClicked
 
     private void orderIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderIconMouseClicked
         new ManageOrders(user_type).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_orderIconMouseClicked
+
+    private void orderLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderLabelMouseClicked
+        new ManageOrders(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_orderLabelMouseClicked
+
+    private void ordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMouseClicked
+        new ManageOrders(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ordersMouseClicked
+
+    private void customerIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerIconMouseClicked
+      new ManageCustomers(user_type).setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_customerIconMouseClicked
+
+    private void categoryIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryIconMouseClicked
+        new ManageCategory(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_categoryIconMouseClicked
+
+    private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryLabelMouseClicked
+        new ManageCategory(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_categoryLabelMouseClicked
 
     /**
      * @param args the command line arguments

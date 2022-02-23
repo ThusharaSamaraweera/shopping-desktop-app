@@ -4,6 +4,7 @@
  */
 package com.mycompany.shopping.app.admin.manageCategory;
 
+import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
 import com.mycompany.shopping.app.admin.dashboard.SuperAdminDashboard;
 import com.mycompany.shopping.app.dbConnection.SqlConnection;
 import java.sql.PreparedStatement;
@@ -420,7 +421,11 @@ public class ManageCategory extends javax.swing.JFrame {
     }//GEN-LAST:event_removeBtnMouseClicked
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-        new SuperAdminDashboard(user_type).setVisible(true);
+        if(user_type.equals("SA")){
+            new SuperAdminDashboard(user_type).setVisible(true);        
+        } else {
+            new AdminDashboard(user_type).setVisible(true);
+        }
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
 
