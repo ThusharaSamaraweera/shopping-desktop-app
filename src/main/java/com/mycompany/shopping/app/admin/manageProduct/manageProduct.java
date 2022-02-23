@@ -5,6 +5,7 @@
  */
 package com.mycompany.shopping.app.admin.manageProduct;
 
+import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
 import com.mycompany.shopping.app.admin.dashboard.SuperAdminDashboard;
 import com.mycompany.shopping.app.dbConnection.SqlConnection;
 import java.awt.Image;
@@ -30,10 +31,12 @@ public class ManageProduct extends javax.swing.JFrame {
     /**
      * Creates new form manageProduct
      */
-    public ManageProduct() {
+    String user_type = null;
+    public ManageProduct(String user) {
         initComponents();
         SelectProducts();
         GetCategory();
+        user_type = user;
     }
 
     /**
@@ -58,7 +61,7 @@ public class ManageProduct extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         DescriptionTextArea = new javax.swing.JTextArea();
         DeleteBtn = new javax.swing.JButton();
-        HomeBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         EditBtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         QtyAndPriceLabel = new javax.swing.JLabel();
@@ -210,19 +213,19 @@ public class ManageProduct extends javax.swing.JFrame {
             }
         });
 
-        HomeBtn.setBackground(new java.awt.Color(255, 204, 51));
-        HomeBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        HomeBtn.setText("Home");
-        HomeBtn.setBorder(null);
-        HomeBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        HomeBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        backBtn.setBackground(new java.awt.Color(255, 204, 51));
+        backBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        backBtn.setText("BACK");
+        backBtn.setBorder(null);
+        backBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        backBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HomeBtnMouseClicked(evt);
+                backBtnMouseClicked(evt);
             }
         });
-        HomeBtn.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HomeBtnActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -472,7 +475,7 @@ public class ManageProduct extends javax.swing.JFrame {
                             .addComponent(AddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(EditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DeleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -552,7 +555,7 @@ public class ManageProduct extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(DeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -629,9 +632,9 @@ public class ManageProduct extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DeleteBtnActionPerformed
 
-    private void HomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeBtnActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_HomeBtnActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void EditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditBtnActionPerformed
         // TODO add your handling code here:
@@ -713,7 +716,7 @@ public class ManageProduct extends javax.swing.JFrame {
         try{
             SqlConnection sqlConnection = new SqlConnection();
             St = sqlConnection.con.createStatement();
-            String query = "select * from category";
+            String query = "select DISTINCT(name) from category";
             Rs = St.executeQuery(query);
             
             while(Rs.next()){
@@ -841,10 +844,14 @@ public class ManageProduct extends javax.swing.JFrame {
         
     }//GEN-LAST:event_EditBtnMouseClicked
 
-    private void HomeBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeBtnMouseClicked
-        new SuperAdminDashboard().setVisible(true);
+    private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
+        if(user_type.equals("SA")){
+            new SuperAdminDashboard(user_type).setVisible(true);
+        }else{
+            new AdminDashboard(user_type).setVisible(true);
+        }
         this.dispose();
-    }//GEN-LAST:event_HomeBtnMouseClicked
+    }//GEN-LAST:event_backBtnMouseClicked
 
     
     private void Img1BtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Img1BtnMouseClicked
@@ -996,7 +1003,7 @@ public class ManageProduct extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ManageProduct().setVisible(true);
+            new ManageProduct("").setVisible(true);
         });
     }
 
@@ -1007,7 +1014,6 @@ public class ManageProduct extends javax.swing.JFrame {
     private javax.swing.JLabel DescriptionLabel;
     private javax.swing.JTextArea DescriptionTextArea;
     private javax.swing.JButton EditBtn;
-    private javax.swing.JButton HomeBtn;
     private javax.swing.JButton Img1Btn;
     private javax.swing.JLabel Img1Loader;
     private javax.swing.JButton Img2Btn;
@@ -1032,6 +1038,7 @@ public class ManageProduct extends javax.swing.JFrame {
     private javax.swing.JTextField SmallQty;
     private javax.swing.JLabel SmallSize;
     private javax.swing.JComboBox<String> SubCategoryComboBox;
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;

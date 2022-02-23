@@ -5,6 +5,7 @@
 package com.mycompany.shopping.app.admin.customer;
 
 import com.mycompany.shopping.app.admin.dashboard.AdminDashboard;
+import com.mycompany.shopping.app.admin.dashboard.SuperAdminDashboard;
 import com.mycompany.shopping.app.admin.login.Login;
 import com.mycompany.shopping.app.dbConnection.SqlConnection;
 import java.sql.*;
@@ -20,8 +21,11 @@ public class ManageCustomers extends javax.swing.JFrame {
     /**
      * Creates new form User_list
      */
-    public ManageCustomers() {
+    String user_type = null;
+    
+    public ManageCustomers(String user) {
         initComponents();
+        this.user_type = user;
         loadData();
     }
     
@@ -254,7 +258,12 @@ public class ManageCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_BackActionPerformed
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-        new AdminDashboard().setVisible(true);
+        System.out.println(user_type + "hi");
+        if(user_type.equals("SA")){
+            new SuperAdminDashboard(user_type).setVisible(true);
+        }else {
+            new AdminDashboard(user_type).setVisible(true);
+        }   
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
 
@@ -263,7 +272,6 @@ public class ManageCustomers extends javax.swing.JFrame {
         int noOfRow = 1;
         try{
 
-//            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/textile_shop?characterEncoding=latin1", "root", "thu$hara#16");
             SqlConnection sqlConnection = new SqlConnection();
             
             st = sqlConnection.con.createStatement();
@@ -308,7 +316,6 @@ public class ManageCustomers extends javax.swing.JFrame {
                 defaultTableModel.addRow(vector);
                 noOfRow++;
             }
-            sqlConnection.con.close();            
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
@@ -346,9 +353,11 @@ public class ManageCustomers extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
-                new ManageCustomers().setVisible(true);
+                new ManageCustomers("").setVisible(true);
             }
+           
         });
     }
 

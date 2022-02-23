@@ -23,9 +23,11 @@ public class ManageCategory extends javax.swing.JFrame {
     /**
      * Creates new form ManageCategory
      */
-    public ManageCategory() {
+    String user_type = null;
+    public ManageCategory(String user) {
         initComponents();
         loadData();
+        user_type = user;
     }
     
     Statement st = null;
@@ -418,7 +420,7 @@ public class ManageCategory extends javax.swing.JFrame {
     }//GEN-LAST:event_removeBtnMouseClicked
 
     private void BackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackMouseClicked
-        new SuperAdminDashboard().setVisible(true);
+        new SuperAdminDashboard(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BackMouseClicked
 
@@ -456,7 +458,7 @@ public class ManageCategory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageCategory().setVisible(true);
+                new ManageCategory("").setVisible(true);
             }
         });
     }

@@ -245,10 +245,10 @@ public class Login extends javax.swing.JFrame {
                 return;
             } else if(HashPassword.isValidPassword(password, rs.getString("password"))){
                 if(rs.getString("user_type").equals("SA")){
-                    new SuperAdminDashboard().setVisible(true);
+                    new SuperAdminDashboard("SA").setVisible(true);
                     this.dispose();                    
                 }else if(rs.getString("user_type").equals("A")) {
-                    new AdminDashboard().setVisible(true);
+                    new AdminDashboard("A").setVisible(true);
                     this.dispose();
                 }
             }else {

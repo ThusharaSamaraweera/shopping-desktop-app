@@ -8,6 +8,7 @@ package com.mycompany.shopping.app.admin.dashboard;
 import com.mycompany.shopping.app.admin.customer.ManageCustomers;
 import com.mycompany.shopping.app.admin.login.Login;
 import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
+import com.mycompany.shopping.app.admin.orders.ManageOrders;
 
 /**
  *
@@ -18,8 +19,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     /**
      * Creates new form homeForm
      */
-    public AdminDashboard() {
+    String user_type = null;
+    public AdminDashboard(String user) {
         initComponents();
+        user_type = user;
     }
 
     /**
@@ -296,7 +299,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         orderLabel.setBackground(new java.awt.Color(255, 204, 51));
         orderLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        orderLabel.setForeground(new java.awt.Color(51, 51, 51));
         orderLabel.setText("ORDER");
         orderLabel.setBorder(null);
         orderLabel.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -309,6 +311,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         orderIcon.setBackground(new java.awt.Color(255, 255, 255));
         orderIcon.setForeground(new java.awt.Color(255, 153, 51));
         orderIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\order.png")); // NOI18N
+        orderIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderIconMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ordersLayout = new javax.swing.GroupLayout(orders);
         orders.setLayout(ordersLayout);
@@ -327,6 +334,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         ordersLayout.setVerticalGroup(
             ordersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ordersLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(orderIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(orderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,7 +401,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_orderLabelActionPerformed
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        new ManageCustomers().setVisible(true);
+        new ManageCustomers(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel4MouseClicked
 
@@ -402,7 +410,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_customerLabelActionPerformed
 
     private void customerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerLabelMouseClicked
-        new ManageCustomers().setVisible(true);
+        new ManageCustomers(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_customerLabelMouseClicked
 
@@ -415,7 +423,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_categoryLabelActionPerformed
 
     private void productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productMouseClicked
-        new ManageProduct().setVisible(true);
+        new ManageProduct(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_productMouseClicked
 
@@ -424,7 +432,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_productLabelActionPerformed
 
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productLabelMouseClicked
-        new ManageProduct().setVisible(true);
+        new ManageProduct(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_productLabelMouseClicked
 
@@ -438,8 +446,12 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnMouseClicked
 
     private void productIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productIconMouseClicked
-        // TODO add your handling code here:
+        new ManageProduct(user_type).setVisible(true);
     }//GEN-LAST:event_productIconMouseClicked
+
+    private void orderIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderIconMouseClicked
+        new ManageOrders(user_type).setVisible(true);
+    }//GEN-LAST:event_orderIconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -478,7 +490,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminDashboard().setVisible(true);
+                new AdminDashboard("").setVisible(true);
             }
         });
     }

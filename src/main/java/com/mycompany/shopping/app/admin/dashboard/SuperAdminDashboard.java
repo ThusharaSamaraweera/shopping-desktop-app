@@ -8,7 +8,11 @@ package com.mycompany.shopping.app.admin.dashboard;
 import com.mycompany.shopping.app.admin.customer.ManageCustomers;
 import com.mycompany.shopping.app.admin.login.Login;
 import com.mycompany.shopping.app.admin.manageAdmins.ManageAdmins;
+import com.mycompany.shopping.app.admin.manageCategory.ManageCategory;
 import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
+import com.mycompany.shopping.app.admin.orders.ManageOrders;
+import com.mycompany.shopping.app.admin.manageAdmins.ManageAdmins;
+
 
 /**
  *
@@ -17,10 +21,13 @@ import com.mycompany.shopping.app.admin.manageProduct.ManageProduct;
 public class SuperAdminDashboard extends javax.swing.JFrame {
 
     /**
-     * Creates new form homeForm
+     * Creates new form SuperAdminDashboard
      */
-    public SuperAdminDashboard() {
+    String user_type = null;
+    public SuperAdminDashboard(String user) {
         initComponents();
+        user_type = user;
+        System.out.println(user_type);
     }
 
     /**
@@ -44,9 +51,9 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         category = new javax.swing.JPanel();
         categoryLabel = new javax.swing.JTextField();
         categoryIcon = new javax.swing.JLabel();
-        user = new javax.swing.JPanel();
-        userLabel = new javax.swing.JTextField();
-        userIcon = new javax.swing.JLabel();
+        adminJPanel = new javax.swing.JPanel();
+        adminJLabel = new javax.swing.JTextField();
+        adminIcon = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         customerIcon = new javax.swing.JLabel();
         customerLabel = new javax.swing.JTextField();
@@ -140,6 +147,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         productIcon.setBackground(new java.awt.Color(255, 255, 255));
         productIcon.setForeground(new java.awt.Color(255, 153, 51));
         productIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\product-icon.png")); // NOI18N
+        productIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         productIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 productIconMouseClicked(evt);
@@ -202,6 +210,12 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         categoryLabel.setText("CATEGORY");
         categoryLabel.setBorder(null);
         categoryLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        categoryLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        categoryLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoryLabelMouseClicked(evt);
+            }
+        });
         categoryLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryLabelActionPerformed(evt);
@@ -211,6 +225,12 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         categoryIcon.setBackground(new java.awt.Color(255, 255, 255));
         categoryIcon.setForeground(new java.awt.Color(255, 153, 51));
         categoryIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\Category-icon.png")); // NOI18N
+        categoryIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        categoryIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoryIconMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout categoryLayout = new javax.swing.GroupLayout(category);
         category.setLayout(categoryLayout);
@@ -235,53 +255,59 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        user.setBackground(new java.awt.Color(255, 204, 0));
-        user.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        user.setMinimumSize(new java.awt.Dimension(159, 150));
-        user.setPreferredSize(new java.awt.Dimension(150, 150));
-        user.addMouseListener(new java.awt.event.MouseAdapter() {
+        adminJPanel.setBackground(new java.awt.Color(255, 204, 0));
+        adminJPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adminJPanel.setMinimumSize(new java.awt.Dimension(159, 150));
+        adminJPanel.setPreferredSize(new java.awt.Dimension(150, 150));
+        adminJPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userMouseClicked(evt);
+                adminJPanelMouseClicked(evt);
             }
         });
 
-        userLabel.setBackground(new java.awt.Color(255, 204, 51));
-        userLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        userLabel.setForeground(new java.awt.Color(51, 51, 51));
-        userLabel.setText("ADMIN");
-        userLabel.setBorder(null);
-        userLabel.setCaretColor(new java.awt.Color(255, 255, 255));
-        userLabel.addActionListener(new java.awt.event.ActionListener() {
+        adminJLabel.setBackground(new java.awt.Color(255, 204, 51));
+        adminJLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        adminJLabel.setForeground(new java.awt.Color(51, 51, 51));
+        adminJLabel.setText("ADMIN");
+        adminJLabel.setBorder(null);
+        adminJLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        adminJLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        adminJLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userLabelActionPerformed(evt);
+                adminJLabelActionPerformed(evt);
             }
         });
 
-        userIcon.setBackground(new java.awt.Color(255, 255, 255));
-        userIcon.setForeground(new java.awt.Color(255, 153, 51));
-        userIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\admin.png")); // NOI18N
+        adminIcon.setBackground(new java.awt.Color(255, 255, 255));
+        adminIcon.setForeground(new java.awt.Color(255, 153, 51));
+        adminIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\admin.png")); // NOI18N
+        adminIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminIconMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout userLayout = new javax.swing.GroupLayout(user);
-        user.setLayout(userLayout);
-        userLayout.setHorizontalGroup(
-            userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(userLayout.createSequentialGroup()
-                .addGroup(userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userLayout.createSequentialGroup()
+        javax.swing.GroupLayout adminJPanelLayout = new javax.swing.GroupLayout(adminJPanel);
+        adminJPanel.setLayout(adminJPanelLayout);
+        adminJPanelLayout.setHorizontalGroup(
+            adminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminJPanelLayout.createSequentialGroup()
+                .addGroup(adminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(adminJPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(userIcon))
-                    .addGroup(userLayout.createSequentialGroup()
+                        .addComponent(adminIcon))
+                    .addGroup(adminJPanelLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(adminJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
-        userLayout.setVerticalGroup(
-            userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLayout.createSequentialGroup()
+        adminJPanelLayout.setVerticalGroup(
+            adminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminJPanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(userIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adminIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adminJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
@@ -298,6 +324,12 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         customerIcon.setBackground(new java.awt.Color(255, 255, 255));
         customerIcon.setForeground(new java.awt.Color(255, 153, 51));
         customerIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\customer-icon.png")); // NOI18N
+        customerIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        customerIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerIconMouseClicked(evt);
+            }
+        });
 
         customerLabel.setBackground(new java.awt.Color(255, 204, 51));
         customerLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -305,6 +337,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         customerLabel.setText("CUSTOMER");
         customerLabel.setBorder(null);
         customerLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        customerLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         customerLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 customerLabelMouseClicked(evt);
@@ -324,29 +357,30 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(customerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(customerIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(customerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(customerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(customerIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(52, Short.MAX_VALUE)))
         );
 
         orders.setBackground(new java.awt.Color(255, 204, 0));
         orders.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         orders.setMinimumSize(new java.awt.Dimension(159, 150));
         orders.setPreferredSize(new java.awt.Dimension(150, 150));
+        orders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ordersMouseClicked(evt);
+            }
+        });
 
         orderLabel.setBackground(new java.awt.Color(255, 204, 51));
         orderLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -354,6 +388,12 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         orderLabel.setText("ORDER");
         orderLabel.setBorder(null);
         orderLabel.setCaretColor(new java.awt.Color(255, 255, 255));
+        orderLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        orderLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderLabelMouseClicked(evt);
+            }
+        });
         orderLabel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderLabelActionPerformed(evt);
@@ -363,6 +403,11 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         orderIcon.setBackground(new java.awt.Color(255, 255, 255));
         orderIcon.setForeground(new java.awt.Color(255, 153, 51));
         orderIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\order.png")); // NOI18N
+        orderIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orderIconMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ordersLayout = new javax.swing.GroupLayout(orders);
         orders.setLayout(ordersLayout);
@@ -401,7 +446,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
                         .addGap(266, 266, 266)
                         .addComponent(orders, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(162, 162, 162)
-                        .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(adminJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,7 +475,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(orders, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                    .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                    .addComponent(adminJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -456,7 +501,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_orderLabelActionPerformed
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked
-        new ManageCustomers().setVisible(true);
+        new ManageCustomers(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel4MouseClicked
 
@@ -465,16 +510,17 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_customerLabelActionPerformed
 
     private void customerLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerLabelMouseClicked
-        new ManageCustomers().setVisible(true);
+        new ManageCustomers(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_customerLabelMouseClicked
 
-    private void userLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userLabelActionPerformed
+    private void adminJLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminJLabelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_userLabelActionPerformed
+    }//GEN-LAST:event_adminJLabelActionPerformed
 
     private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
-
+        new ManageCategory(user_type).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_categoryMouseClicked
 
     private void categoryLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryLabelActionPerformed
@@ -482,7 +528,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_categoryLabelActionPerformed
 
     private void productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productMouseClicked
-        new ManageProduct().setVisible(true);
+        new ManageProduct(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_productMouseClicked
 
@@ -491,7 +537,7 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_productLabelActionPerformed
 
     private void productLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productLabelMouseClicked
-        new ManageProduct().setVisible(true);
+        new ManageProduct(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_productLabelMouseClicked
 
@@ -504,14 +550,50 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logoutBtnMouseClicked
 
-    private void userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userMouseClicked
+    private void adminJPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminJPanelMouseClicked
         new ManageAdmins().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_userMouseClicked
+    }//GEN-LAST:event_adminJPanelMouseClicked
 
     private void productIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productIconMouseClicked
-        
+        new ManageProduct(user_type).setVisible(true);
+        this.dispose();        
     }//GEN-LAST:event_productIconMouseClicked
+
+    private void customerIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerIconMouseClicked
+        new ManageCustomers(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_customerIconMouseClicked
+
+    private void categoryIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryIconMouseClicked
+        new ManageCategory(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_categoryIconMouseClicked
+
+    private void categoryLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryLabelMouseClicked
+        new ManageCategory(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_categoryLabelMouseClicked
+
+    private void orderIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderIconMouseClicked
+        new ManageOrders(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_orderIconMouseClicked
+
+    private void ordersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMouseClicked
+        new ManageOrders(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ordersMouseClicked
+
+    private void orderLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderLabelMouseClicked
+        new ManageOrders(user_type).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_orderLabelMouseClicked
+
+    private void adminIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminIconMouseClicked
+        new ManageAdmins().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adminIconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -550,12 +632,15 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SuperAdminDashboard().setVisible(true);
+                new SuperAdminDashboard("SA").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel adminIcon;
+    private javax.swing.JTextField adminJLabel;
+    private javax.swing.JPanel adminJPanel;
     private javax.swing.JPanel category;
     private javax.swing.JLabel categoryIcon;
     private javax.swing.JTextField categoryLabel;
@@ -574,9 +659,6 @@ public class SuperAdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel product;
     private javax.swing.JLabel productIcon;
     private javax.swing.JTextField productLabel;
-    private javax.swing.JPanel user;
-    private javax.swing.JLabel userIcon;
-    private javax.swing.JTextField userLabel;
     // End of variables declaration//GEN-END:variables
 
     private static class ManageProudct {
