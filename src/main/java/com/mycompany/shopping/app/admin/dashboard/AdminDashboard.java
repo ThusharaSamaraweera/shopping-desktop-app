@@ -69,7 +69,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 143));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\Textile-shop-header4.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\Textile-shop-header4.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -139,7 +139,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         productIcon.setBackground(new java.awt.Color(255, 255, 255));
         productIcon.setForeground(new java.awt.Color(255, 153, 51));
-        productIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\customer-icon.png")); // NOI18N
         productIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 productIconMouseClicked(evt);
@@ -180,7 +179,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         productLayout.setVerticalGroup(
             productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, productLayout.createSequentialGroup()
-                .addComponent(productIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 116, Short.MAX_VALUE)
+                .addComponent(productIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(productLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -216,7 +215,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         categoryIcon.setBackground(new java.awt.Color(255, 255, 255));
         categoryIcon.setForeground(new java.awt.Color(255, 153, 51));
-        categoryIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\Category-icon.png")); // NOI18N
         categoryIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 categoryIconMouseClicked(evt);
@@ -229,7 +227,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, categoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(categoryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(categoryIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(categoryLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -240,7 +238,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             categoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, categoryLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
-                .addComponent(categoryIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(categoryIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(categoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7))
@@ -258,7 +256,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         customerIcon.setBackground(new java.awt.Color(255, 255, 255));
         customerIcon.setForeground(new java.awt.Color(255, 153, 51));
-        customerIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\customer-icon.png")); // NOI18N
         customerIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         customerIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -340,7 +337,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         orderIcon.setBackground(new java.awt.Color(255, 255, 255));
         orderIcon.setForeground(new java.awt.Color(255, 153, 51));
-        orderIcon.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\order.png")); // NOI18N
         orderIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 orderIconMouseClicked(evt);
@@ -365,7 +361,7 @@ public class AdminDashboard extends javax.swing.JFrame {
             ordersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ordersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(orderIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(orderIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(orderLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

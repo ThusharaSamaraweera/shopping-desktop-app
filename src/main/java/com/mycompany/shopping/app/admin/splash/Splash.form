@@ -102,7 +102,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\src\main\java\com\mycompany\shopping\app\asserts\images\Textile-shop-header1.jpg"/>
+              <Image iconType="2" name="D:\edu\Edu IT\edu projects\project6\Shopping-app\shopping-desktop-app\asserts\images\Textile-shop-header1.jpg"/>
             </Property>
           </Properties>
         </Component>

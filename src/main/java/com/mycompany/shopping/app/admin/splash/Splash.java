@@ -48,7 +48,7 @@ public class Splash extends javax.swing.JFrame {
         progress.setFont(new java.awt.Font("Tekton Pro", 1, 18)); // NOI18N
         progress.setText("%");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\src\\main\\java\\com\\mycompany\\shopping\\app\\asserts\\images\\Textile-shop-header1.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\edu\\Edu IT\\edu projects\\project6\\Shopping-app\\shopping-desktop-app\\asserts\\images\\Textile-shop-header1.jpg")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
