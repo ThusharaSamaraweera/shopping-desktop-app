@@ -13,6 +13,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +29,7 @@ public class ManageOrders extends javax.swing.JFrame {
     String user_type = null;
     public ManageOrders(String user) {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         SelectOrders();
         user_type = user;
     }
@@ -87,6 +89,7 @@ public class ManageOrders extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1400, 750));
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
+        setResizable(false);
 
         header.setBackground(new java.awt.Color(255, 204, 51));
         header.setMaximumSize(new java.awt.Dimension(1000, 750));

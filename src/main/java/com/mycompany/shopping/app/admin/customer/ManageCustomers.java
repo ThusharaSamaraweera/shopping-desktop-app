@@ -10,6 +10,7 @@ import com.mycompany.shopping.app.admin.login.Login;
 import com.mycompany.shopping.app.dbConnection.SqlConnection;
 import java.sql.*;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +26,7 @@ public class ManageCustomers extends javax.swing.JFrame {
     
     public ManageCustomers(String user) {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.user_type = user;
         loadData();
     }
@@ -57,6 +59,7 @@ public class ManageCustomers extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1400, 750));
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 750));

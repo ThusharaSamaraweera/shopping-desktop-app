@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +33,7 @@ public class ManageAdmins extends javax.swing.JFrame {
     
     public ManageAdmins() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         loadData();
         adminTypeDropdown.setSelectedIndex(-1);
     }
@@ -75,6 +77,7 @@ public class ManageAdmins extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1400, 750));
         setMinimumSize(new java.awt.Dimension(1400, 750));
+        setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

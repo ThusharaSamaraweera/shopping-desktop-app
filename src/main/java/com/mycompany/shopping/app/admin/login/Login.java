@@ -226,7 +226,7 @@ public class Login extends javax.swing.JFrame {
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
         Statement st = null;
         ResultSet rs = null;
-        String query = "SELECT password, user_type FROM signup WHERE email='"+emailTextfield.getText()+"'and user_type!='C' ";
+        String query = "SELECT password, user_type, active FROM signup WHERE email='"+emailTextfield.getText()+"'and user_type!='C' ";
         try{
             SqlConnection sqlConnection = new SqlConnection();
             st = sqlConnection.con.createStatement();
@@ -236,13 +236,12 @@ public class Login extends javax.swing.JFrame {
             String email = emailTextfield.getText();
             if( email.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Enter your email");
-                return;               
             } else if(!rs.next()){
                 JOptionPane.showMessageDialog(this, "This is no user for this email.");
-                return ;
+            } else if(rs.getString("active").equals("0")){
+                JOptionPane.showMessageDialog(this, "Currently, this account was deactivated");
             } else if(password.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Enter your password");
-                return;
             } else if(HashPassword.isValidPassword(password, rs.getString("password"))){
                 if(rs.getString("user_type").equals("SA")){
                     new SuperAdminDashboard("SA").setVisible(true);
@@ -253,7 +252,6 @@ public class Login extends javax.swing.JFrame {
                 }
             }else {
                 JOptionPane.showMessageDialog(this, "Password is not valid.");
-                return;
             }
         }catch(Exception e){
             e.printStackTrace();

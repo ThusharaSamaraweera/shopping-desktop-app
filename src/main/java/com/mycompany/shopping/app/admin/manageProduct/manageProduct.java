@@ -34,6 +34,7 @@ public class ManageProduct extends javax.swing.JFrame {
     String user_type = null;
     public ManageProduct(String user) {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         SelectProducts();
         GetCategory();
         user_type = user;
@@ -93,6 +94,7 @@ public class ManageProduct extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1400, 750));
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 51));
 

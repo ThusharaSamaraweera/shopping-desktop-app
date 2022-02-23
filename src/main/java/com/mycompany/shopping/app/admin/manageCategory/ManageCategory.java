@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,6 +28,7 @@ public class ManageCategory extends javax.swing.JFrame {
     String user_type = null;
     public ManageCategory(String user) {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         loadData();
         user_type = user;
     }
@@ -66,6 +68,7 @@ public class ManageCategory extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1400, 750));
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 750));
@@ -309,9 +312,22 @@ public class ManageCategory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddBtnMouseClicked
-        String collection = collectionDropdown.getSelectedItem().toString();
+        Object collectionObj = collectionDropdown.getSelectedItem();
         String category = CategoryNameTextField.getText();
         
+        // validation
+        if(collectionObj == null){
+            JOptionPane.showMessageDialog(null, "Select collection");   
+            return;
+        }
+        if(category.isBlank()){
+            JOptionPane.showMessageDialog(null, "Enter category");   
+            return;            
+        }
+        
+        String collection = collectionDropdown.getSelectedItem().toString();
+        
+
         try {
             SqlConnection sqlConnection = new SqlConnection();
             pst =  sqlConnection.con.prepareStatement("INSERT INTO category(main_cat, name) VALUES (?,?)");
