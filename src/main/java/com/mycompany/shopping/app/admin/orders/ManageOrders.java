@@ -90,6 +90,14 @@ public class ManageOrders extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         header.setBackground(new java.awt.Color(255, 204, 51));
         header.setMaximumSize(new java.awt.Dimension(1000, 750));
@@ -673,8 +681,9 @@ public class ManageOrders extends javax.swing.JFrame {
                 StateOrDivisionTextField.setText("");
                 CountryTextField.setText("");
                 PostelCodeTextField.setText("");
-                StateComboBox.setSelectedItem("State");
-                
+                StateComboBox.setSelectedIndex(-1);
+                DefaultTableModel d = (DefaultTableModel)ProductListTable.getModel();
+                d.setRowCount(0);
                 row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Order Successfully Deleted");
                 SelectOrders();
@@ -763,6 +772,25 @@ public class ManageOrders extends javax.swing.JFrame {
     private void LastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LastNameTextFieldActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+            FirstNameTextField.setText("");
+            LastNameTextField.setText("");
+            PhoneNoTextField.setText("");
+            EmailTextField.setText("");
+            AddressLine1TextField.setText("");
+            AddressLine2TextField.setText("");
+            StateOrDivisionTextField.setText("");
+            CountryTextField.setText("");
+            PostelCodeTextField.setText("");
+            StateComboBox.setSelectedIndex(-1);
+            DefaultTableModel d = (DefaultTableModel)ProductListTable.getModel();
+            d.setRowCount(0);
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formMouseEntered
 
     public void setTextFields(int customerID){
         try{

@@ -79,6 +79,11 @@ public class ManageAdmins extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setResizable(false);
         setType(java.awt.Window.Type.POPUP);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 1000));
@@ -612,6 +617,10 @@ public class ManageAdmins extends javax.swing.JFrame {
         new SuperAdminDashboard(user_type).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments

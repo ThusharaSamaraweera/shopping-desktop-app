@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -95,6 +96,11 @@ public class ManageProduct extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 51));
 
@@ -774,7 +780,7 @@ public class ManageProduct extends javax.swing.JFrame {
                 
                 ProductNameTextfield.setText("");
                 MainCategoryComboBox.setSelectedItem("Men");
-                SubCategoryComboBox.setSelectedItem("Item 1");
+                SubCategoryComboBox.setSelectedIndex(-1);
                 DescriptionTextArea.setText("");
                 SmallQty.setText("");
                 SmallPrice.setText("");
@@ -972,6 +978,19 @@ public class ManageProduct extends javax.swing.JFrame {
     private void Img3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Img3BtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Img3BtnActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+                ProductNameTextfield.setText("");
+                MainCategoryComboBox.setSelectedItem("Men");
+                SubCategoryComboBox.setSelectedIndex(-1);
+                DescriptionTextArea.setText("");
+                SmallQty.setText("");
+                SmallPrice.setText("");
+                MediumQty.setText("");
+                MediumPrice.setText("");
+                LargeQty.setText("");
+                LargePrice.setText("");
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments

@@ -69,11 +69,21 @@ public class ManageCategory extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1400, 750));
         setPreferredSize(new java.awt.Dimension(1400, 750));
         setResizable(false);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 750));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 750));
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 750));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         categoryNameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         categoryNameLabel.setText("Category Name");
@@ -448,6 +458,18 @@ public class ManageCategory extends javax.swing.JFrame {
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BackActionPerformed
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        collectionDropdown.setSelectedIndex(-1);
+        CategoryNameTextField.setText("");
+        collectionDropdown.requestFocus(); 
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        collectionDropdown.setSelectedIndex(-1);
+        CategoryNameTextField.setText("");
+        collectionDropdown.requestFocus();  
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
